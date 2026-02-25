@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Script Mod - Docs</title>
-    <!-- Prism.js for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', 'Monaco', 'Courier New', monospace;
@@ -29,7 +24,7 @@
             background: #252526;
             padding: 50px;
             border-radius: 8px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 32px rgba(0,0,0,.5);
             border: 1px solid #3e3e42;
         }
 
@@ -47,7 +42,7 @@
             padding: 10px 20px;
             border: 1px solid #3e3e42;
             border-radius: 4px;
-            transition: all 0.3s;
+            transition: all .3s;
             font-size: 14px;
             font-weight: 600;
         }
@@ -115,8 +110,8 @@
             margin: 5px 0 !important;
             overflow-x: auto;
             overflow-y: auto;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
-            min-height: 150px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,.3);
+            min-height: 60px;
         }
 
         pre code {
@@ -133,63 +128,21 @@
             display: block;
         }
 
-        /* Scrollbar styling */
-        pre::-webkit-scrollbar {
-            height: 8px;
-            width: 8px;
-        }
+        pre::-webkit-scrollbar { height: 8px; width: 8px; }
+        pre::-webkit-scrollbar-track { background: #1e1e1e; }
+        pre::-webkit-scrollbar-thumb { background: #3e3e42; border-radius: 4px; }
+        pre::-webkit-scrollbar-thumb:hover { background: #555555; }
 
-        pre::-webkit-scrollbar-track {
-            background: #1e1e1e;
-        }
+        .token.keyword   { color: #569cd6 !important; }
+        .token.string    { color: #ce9178 !important; }
+        .token.number    { color: #b5cea8 !important; }
+        .token.boolean   { color: #569cd6 !important; }
+        .token.function  { color: #dcdcaa !important; }
+        .token.comment   { color: #6a9955 !important; font-style: italic; }
+        .token.operator  { color: #d4d4d4 !important; }
 
-        pre::-webkit-scrollbar-thumb {
-            background: #3e3e42;
-            border-radius: 4px;
-        }
-
-        pre::-webkit-scrollbar-thumb:hover {
-            background: #555555;
-        }
-
-        .token.keyword {
-            color: #569cd6 !important;
-        }
-
-        .token.string {
-            color: #ce9178 !important;
-        }
-
-        .token.number {
-            color: #b5cea8 !important;
-        }
-
-        .token.boolean {
-            color: #569cd6 !important;
-        }
-
-        .token.function {
-            color: #dcdcaa !important;
-        }
-
-        .token.comment {
-            color: #6a9955 !important;
-            font-style: italic;
-        }
-
-        .token.operator {
-            color: #d4d4d4 !important;
-        }
-
-        ul, ol {
-            margin-left: 25px;
-            margin-bottom: 15px;
-        }
-
-        li {
-            margin-bottom: 10px;
-            color: #cccccc;
-        }
+        ul, ol { margin-left: 25px; margin-bottom: 15px; }
+        li { margin-bottom: 10px; color: #cccccc; }
 
         table {
             width: 100%;
@@ -214,15 +167,11 @@
             padding: 12px 14px;
             border-bottom: 1px solid #3e3e42;
             color: #cccccc;
+            vertical-align: top;
         }
 
-        table tr:hover {
-            background: #2d2d30;
-        }
-
-        table tr:last-child td {
-            border-bottom: none;
-        }
+        table tr:hover { background: #2d2d30; }
+        table tr:last-child td { border-bottom: none; }
 
         .note {
             background: #1e3a3a;
@@ -231,44 +180,46 @@
             margin: 25px 0;
             border-radius: 4px;
             border-right: 1px solid #3e3e42;
-        }
-
-        .note strong {
-            color: #4ec9b0;
-        }
-
-        .note {
             color: #b4d7ff;
         }
+
+        .note strong { color: #4ec9b0; }
+
+        .warn {
+            background: #3a2a1e;
+            border-left: 4px solid #ce9178;
+            padding: 16px;
+            margin: 25px 0;
+            border-radius: 4px;
+            border-right: 1px solid #3e3e42;
+            color: #e0c49f;
+        }
+
+        .warn strong { color: #ce9178; }
 
         .toc {
             background: #2d2d30;
             border: 1px solid #3e3e42;
-            padding: 20px;
+            padding: 20px 30px;
             margin: 30px 0;
             border-radius: 6px;
+            column-count: 2;
+            column-gap: 40px;
         }
 
-        .toc strong {
+        .toc-header {
+            column-span: all;
             color: #569cd6;
             font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
         }
 
-        .toc ul {
-            margin-left: 20px;
-            margin-top: 12px;
-        }
-
-        .toc a {
-            color: #9cdcfe;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .toc a:hover {
-            color: #4ec9b0;
-            text-decoration: underline;
-        }
+        .toc ul { margin-left: 18px; margin-top: 0; margin-bottom: 4px; }
+        .toc li { margin-bottom: 5px; }
+        .toc a { color: #9cdcfe; text-decoration: none; transition: color .2s; }
+        .toc a:hover { color: #4ec9b0; text-decoration: underline; }
 
         .section-divider {
             height: 2px;
@@ -285,10 +236,7 @@
             text-align: center;
         }
 
-        footer p {
-            color: #6a9955;
-            margin-bottom: 15px;
-        }
+        footer p { color: #6a9955; margin-bottom: 15px; }
 
         .footer-links {
             display: flex;
@@ -303,15 +251,12 @@
         .footer-links a {
             color: #4ec9b0;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color .3s;
             font-size: 13px;
             font-weight: 600;
         }
 
-        .footer-links a:hover {
-            color: #9cdcfe;
-            text-decoration: underline;
-        }
+        .footer-links a:hover { color: #9cdcfe; text-decoration: underline; }
 
         .feature-badge {
             display: inline-block;
@@ -324,347 +269,810 @@
             margin-right: 6px;
             margin-bottom: 6px;
         }
+
+        .badge-green  { background: #4ec9b0; }
+        .badge-orange { background: #ce9178; }
+        .badge-purple { background: #c586c0; }
+
+        @media (max-width: 700px) {
+            .toc { column-count: 1; }
+            .container { padding: 24px; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-links">
-            <a href="https://www.curseforge.com/minecraft/mc-mods/advanced-scripts" target="_blank">Download it on CurseForge</a>
-        </div>
+<div class="container">
 
-        <h1>Advanced Scripts Mod - Language</h1>
-        <p class="subtitle">Python-like Scripting for Minecraft</p>
-
-        <div class="toc">
-            <strong>Quick Navigation</strong>
-            <ul>
-                <li><a href="#syntax">Basic Syntax</a></li>
-                <li><a href="#variables">Variables & Types</a></li>
-                <li><a href="#control">Control Flow</a></li>
-                <li><a href="#functions">Functions</a></li>
-                <li><a href="#imports">Imports & Modules</a></li>
-                <li><a href="#commands">Minecraft Commands</a></li>
-                <li><a href="#builtins">Built-in Functions</a></li>
-                <li><a href="#examples">Examples</a></li>
-            </ul>
-        </div>
-
-        <div class="section-divider"></div>
-
-        <h2 id="syntax">Basic Syntax</h2>
-        <p>The scripting language uses Python-like syntax with indentation-based blocks and supports variables, loops, conditionals, and functions.</p>
-
-        <h3>Comments</h3>
-        <p>Use <code>#</code> for single-line comments:</p>
-        <pre><code class="language-python"># This is a comment
-x = 10  # Inline comment</code></pre>
-
-        <h3>Indentation</h3>
-        <p>Indentation (4 spaces or 1 tab) defines code blocks:</p>
-        <pre><code class="language-python">if x > 5:
-    /say x is greater than 5
-    x = x - 1</code></pre>
-
-        <div class="section-divider"></div>
-
-        <h2 id="variables">Variables & Types</h2>
-
-        <h3>Variable Assignment</h3>
-        <pre><code class="language-python">name = "Player"
-age = 25
-height = 1.75
-is_online = True
-items = None</code></pre>
-
-        <h3>Supported Types</h3>
-        <table>
-            <tr>
-                <th>Type</th>
-                <th>Example</th>
-                <th>Description</th>
-            </tr>
-            <tr>
-                <td><span class="feature-badge">String</span></td>
-                <td><code>"hello"</code> or <code>'hello'</code></td>
-                <td>Text values</td>
-            </tr>
-            <tr>
-                <td><span class="feature-badge">Integer</span></td>
-                <td><code>42</code></td>
-                <td>Whole numbers</td>
-            </tr>
-            <tr>
-                <td><span class="feature-badge">Float</span></td>
-                <td><code>3.14</code></td>
-                <td>Decimal numbers</td>
-            </tr>
-            <tr>
-                <td><span class="feature-badge">Boolean</span></td>
-                <td><code>True</code>, <code>False</code></td>
-                <td>Boolean values</td>
-            </tr>
-            <tr>
-                <td><span class="feature-badge">List</span></td>
-                <td><code>[1, 2, 3]</code></td>
-                <td>Ordered collection</td>
-            </tr>
-            <tr>
-                <td><span class="feature-badge">None</span></td>
-                <td><code>None</code></td>
-                <td>No value</td>
-            </tr>
-        </table>
-
-        <h3>String Interpolation</h3>
-        <p>Use curly braces <code>{variable}</code> to interpolate variables in strings:</p>
-        <pre><code class="language-python">name = "Player"
-/say Hello, {name}!
-
-x = 10
-message = f"The value is {x}"
-/say {message}</code></pre>
-
-        <h3>Arithmetic Operations</h3>
-        <pre><code class="language-python">a = 10
-b = 3
-
-sum_result = a + b      # 13
-diff = a - b            # 7
-product = a * b         # 30
-quotient = a / b        # 3.33</code></pre>
-
-        <div class="section-divider"></div>
-
-        <h2 id="control">Control Flow</h2>
-
-        <h3>If / Elif / Else</h3>
-        <pre><code class="language-python">x = 5
-
-if x > 10:
-    /say x is greater than 10
-elif x == 5:
-    /say x is 5
-else:
-    /say x is less than 10</code></pre>
-
-        <h3>Comparison Operators</h3>
-        <table>
-            <tr>
-                <th>Operator</th>
-                <th>Meaning</th>
-                <th>Example</th>
-            </tr>
-            <tr>
-                <td><code>==</code></td>
-                <td>Equal to</td>
-                <td><code>x == 5</code></td>
-            </tr>
-            <tr>
-                <td><code>!=</code></td>
-                <td>Not equal to</td>
-                <td><code>x != 5</code></td>
-            </tr>
-            <tr>
-                <td><code>></code></td>
-                <td>Greater than</td>
-                <td><code>x > 5</code></td>
-            </tr>
-            <tr>
-                <td><code><</code></td>
-                <td>Less than</td>
-                <td><code>x < 5</code></td>
-            </tr>
-            <tr>
-                <td><code>>=</code></td>
-                <td>Greater or equal</td>
-                <td><code>x >= 5</code></td>
-            </tr>
-            <tr>
-                <td><code><=</code></td>
-                <td>Less or equal</td>
-                <td><code>x <= 5</code></td>
-            </tr>
-        </table>
-
-        <h3>For Loop</h3>
-        <pre><code class="language-python">for i in range(5):
-    /say Number: {i}
-    wait(10)</code></pre>
-
-        <h3>While Loop</h3>
-        <pre><code class="language-python">counter = 0
-while counter < 5:
-    /say Counter: {counter}
-    counter = counter + 1
-    wait(10)</code></pre>
-
-        <h3>Break and Continue</h3>
-        <pre><code class="language-python">for i in range(10):
-    if i == 5:
-        break
-    if i == 2:
-        continue
-    /say {i}</code></pre>
-
-        <div class="section-divider"></div>
-
-        <h2 id="functions">🔧 Functions</h2>
-
-        <h3>Function Definition</h3>
-        <pre><code class="language-python">def greet(name):
-    /say Hello, {name}!
-
-def add_numbers(a, b):
-    result = a + b
-    /say Result: {result}
-    return result</code></pre>
-
-        <h3>Function Calls</h3>
-        <pre><code class="language-python">greet("Player")
-result = add_numbers(5, 3)
-
-lib.utils.say_colored("Text", "gold")
-lib.helpers.countdown(10)</code></pre>
-
-        <h3>Functions with Multiple Parameters</h3>
-        <pre><code class="language-python">def give_items(player, item, amount):
-    /give {player} {item} {amount}
-    /say Gave {amount} {item} to {player}
-
-give_items("@s", "diamond", 10)</code></pre>
-
-        <div class="section-divider"></div>
-
-        <h2 id="imports">Imports & Modules</h2>
-
-        <h3>Import Syntax</h3>
-        <p>Import all functions from another script:</p>
-        <pre><code class="language-python">from lib.utils import *
-from helpers.math_utils import *</code></pre>
-
-        <h3>Using Imported Functions</h3>
-        <pre><code class="language-python">lib.utils.say_colored("Text", "gold")
-helpers.math_utils.fibonacci_up_to(100)</code></pre>
-
-        <h3>Directory Structure</h3>
-        <pre><code class="language-python">scripts/
-├── main.script
-├── lib/
-│   ├── utils.script
-│   └── math_utils.script
-└── helpers/
-    └── colors.script</code></pre>
-
-        <div class="section-divider"></div>
-
-        <h2 id="commands">Minecraft Commands</h2>
-
-        <h3>Executing Commands</h3>
-        <p>Commands start with <code>/</code> and support variable interpolation:</p>
-        <pre><code class="language-python">player = "Dev"
-/say Hello, {player}!
-/tp {player} 0 64 0
-/give {player} diamond 10
-/summon minecraft:armor_stand ~ ~ ~</code></pre>
-
-        <h3>Tellraw (Colored Text)</h3>
-        <pre><code class="language-python">/tellraw @a {"text":"Red Text","color":"red"}
-/tellraw @a [{"text":"Multi","color":"gold"},{"text":"Color","color":"blue"}]</code></pre>
-
-        <div class="section-divider"></div>
-
-        <h2 id="builtins">Built-in Functions</h2>
-
-        <h3>print(text)</h3>
-        <p>Print debug message to console:</p>
-        <pre><code class="language-python">print("Debug message")
-print(x)</code></pre>
-
-        <h3>wait(ticks)</h3>
-        <p>Wait for specified ticks (1 tick = 50ms):</p>
-        <pre><code class="language-python">wait(10)   # Wait 500ms
-wait(20)   # Wait 1 second</code></pre>
-
-        <h3>range()</h3>
-        <p>Create number sequences:</p>
-        <pre><code class="language-python"># From 0 to n-1
-for i in range(5):
-    /say {i}  # 0, 1, 2, 3, 4
-
-# From start to end
-for i in range(1, 5):
-    /say {i}  # 1, 2, 3, 4
-
-# With step
-for i in range(0, 10, 2):
-    /say {i}  # 0, 2, 4, 6, 8</code></pre>
-
-        <div class="section-divider"></div>
-
-        <h2 id="examples">💡 Examples</h2>
-
-        <h3>Fibonacci Sequence</h3>
-        <pre><code class="language-python">/say Starting Fibonacci Sequence...
-
-a = 0
-b = 1
-
-for i in range(10):
-    /say [{i}] {a}
-    temp = a
-    a = b
-    b = temp + b
-    wait(5)
-
-/say Fibonacci generation complete!</code></pre>
-
-        <h3>Countdown Timer</h3>
-        <pre><code class="language-python">def countdown(n):
-    count = n
-    while count > 0:
-        /say Countdown: {count}
-        count = count - 1
-        wait(20)
-    /say Blast off!
-
-countdown(5)</code></pre>
-
-        <h3>Colored Messages</h3>
-        <pre><code class="language-python">def say_colored(message, color):
-    /say [{color}] {message}
-
-def say_title(title):
-    /say ════════════════════════════════
-    /say {title}
-    /say ════════════════════════════════
-
-say_title("Welcome to Server")
-say_colored("Online", "green")
-say_colored("Players Connected", "gold")</code></pre>
-
-        <h3>With Imports</h3>
-        <pre><code class="language-python">from lib.helpers import *
-
-lib.helpers.greet("Player")
-lib.helpers.summon_stand()
-wait(10)
-lib.helpers.give_items("@s", "diamond", 5)</code></pre>
-
-        <div class="note">
-            <strong>⚠️ Important:</strong> The script engine maintains strict execution order. Each command is synchronized, ensuring sequential execution even with asynchronous operations.
-        </div>
-
-        <footer>
-            <p>Advanced Scripts Mod - Documentation | Version 1.0</p>
-            <div class="footer-links">
-                <a href="https://www.curseforge.com/minecraft/mc-mods/advanced-scripts" target="_blank">Download it on CurseForge</a>
-            </div>
-        </footer>
+    <div class="header-links">
+        <a href="https://www.curseforge.com/minecraft/mc-mods/advanced-scripts" target="_blank">⬇ Download on CurseForge</a>
     </div>
 
-    <script>
-        // Prism syntax highlighting initialization
-        Prism.highlightAll();
-    </script>
+    <h1>Advanced Scripts Mod</h1>
+    <p class="subtitle">Complete Language Reference &nbsp;·&nbsp; Minecraft Forge 1.20.1</p>
+
+    <!-- ═══════════════════ TOC ═══════════════════ -->
+    <div class="toc">
+        <span class="toc-header">📖 Quick Navigation</span>
+        <ul>
+            <li><a href="#syntax">Basic Syntax</a></li>
+            <li><a href="#variables">Variables &amp; Types</a></li>
+            <li><a href="#operators">Operators</a></li>
+            <li><a href="#strings">Strings &amp; F-strings</a></li>
+            <li><a href="#lists">Lists</a></li>
+            <li><a href="#dicts">Dictionaries</a></li>
+        </ul>
+        <ul>
+            <li><a href="#control">Control Flow</a></li>
+            <li><a href="#functions">Functions &amp; Macros</a></li>
+            <li><a href="#scope">Scope &amp; Global</a></li>
+            <li><a href="#imports">Imports &amp; Modules</a></li>
+            <li><a href="#annotations">Script Annotations</a></li>
+            <li><a href="#preprocessor">Preprocessor (#define)</a></li>
+        </ul>
+        <ul>
+            <li><a href="#commands">Minecraft Commands</a></li>
+            <li><a href="#builtins">Built-in Functions</a></li>
+            <li><a href="#list-methods">List Methods</a></li>
+            <li><a href="#dict-methods">Dict Methods</a></li>
+            <li><a href="#str-methods">String Methods</a></li>
+            <li><a href="#examples">Examples</a></li>
+        </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ BASIC SYNTAX ═══════════════════ -->
+    <h2 id="syntax">Basic Syntax</h2>
+    <p>The language uses Python-like syntax: indentation-based blocks, no semicolons, and inline comments with <code>#</code>.</p>
+
+    <h3>Comments</h3>
+    <pre><code class="language-python"># This is a full-line comment
+x = 10  # This is an inline comment</code></pre>
+
+    <h3>Indentation</h3>
+    <p>Use <strong>4 spaces</strong> or <strong>1 tab</strong> per level. Mixed indentation in the same block is not supported.</p>
+    <pre><code class="language-python">if x > 5:
+    /say x is greater than 5   # indented block
+    x = x - 1
+/say always runs               # back to top level</code></pre>
+
+    <h3>Line Continuation</h3>
+    <p>Long lines can be split with a trailing backslash <code>\</code>:</p>
+    <pre><code class="language-python">result = very_long_variable_name + \
+         another_long_variable</code></pre>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ VARIABLES ═══════════════════ -->
+    <h2 id="variables">Variables &amp; Types</h2>
+
+    <h3>Assignment</h3>
+    <pre><code class="language-python">name     = "Steve"       # str
+health   = 20            # int
+speed    = 0.4           # float
+is_op    = True          # bool
+target   = None          # None (null)
+items    = [1, 2, 3]     # list
+data     = {"key": 1}    # dict</code></pre>
+
+    <h3>Augmented Assignment</h3>
+    <pre><code class="language-python">x = 10
+x += 5   # x = 15
+x -= 3   # x = 12
+x *= 2   # x = 24
+x /= 4   # x = 6.0
+x %= 4   # x = 2.0</code></pre>
+
+    <h3>Subscript Assignment</h3>
+    <pre><code class="language-python">inventory = ["sword", "shield", "potion"]
+inventory[0] = "bow"       # replace first element
+
+player_data = {"hp": 20}
+player_data["hp"] = 15     # update dict value
+player_data["mp"] += 5     # augmented on dict key</code></pre>
+
+    <h3>Type Table</h3>
+    <table>
+        <tr><th>Type</th><th>Example</th><th>Notes</th></tr>
+        <tr><td><span class="feature-badge">int</span></td><td><code>42</code>, <code>-7</code></td><td>Whole numbers</td></tr>
+        <tr><td><span class="feature-badge">float</span></td><td><code>3.14</code>, <code>-0.5</code></td><td>Decimal numbers</td></tr>
+        <tr><td><span class="feature-badge">str</span></td><td><code>"hi"</code>, <code>'hi'</code></td><td>Text, single or double quotes</td></tr>
+        <tr><td><span class="feature-badge">bool</span></td><td><code>True</code>, <code>False</code></td><td>Case-sensitive</td></tr>
+        <tr><td><span class="feature-badge">list</span></td><td><code>[1, "a", True]</code></td><td>Ordered, mixed types</td></tr>
+        <tr><td><span class="feature-badge">dict</span></td><td><code>{"k": "v"}</code></td><td>Key-value pairs, string keys</td></tr>
+        <tr><td><span class="feature-badge">None</span></td><td><code>None</code></td><td>Represents no value</td></tr>
+        <tr><td><span class="feature-badge badge-purple">module</span></td><td><code>import math</code></td><td>Loaded script module</td></tr>
+    </table>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ OPERATORS ═══════════════════ -->
+    <h2 id="operators">Operators</h2>
+
+    <h3>Arithmetic</h3>
+    <table>
+        <tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+        <tr><td><code>+</code></td><td>Addition / concat</td><td><code>3 + 2</code></td><td><code>5</code></td></tr>
+        <tr><td><code>-</code></td><td>Subtraction</td><td><code>3 - 2</code></td><td><code>1</code></td></tr>
+        <tr><td><code>*</code></td><td>Multiplication</td><td><code>3 * 2</code></td><td><code>6</code></td></tr>
+        <tr><td><code>/</code></td><td>Division (float)</td><td><code>7 / 2</code></td><td><code>3.5</code></td></tr>
+        <tr><td><code>//</code></td><td>Floor division</td><td><code>7 // 2</code></td><td><code>3</code></td></tr>
+        <tr><td><code>%</code></td><td>Modulo</td><td><code>7 % 3</code></td><td><code>1</code></td></tr>
+        <tr><td><code>**</code></td><td>Power</td><td><code>2 ** 8</code></td><td><code>256</code></td></tr>
+    </table>
+
+    <h3>Comparison</h3>
+    <table>
+        <tr><th>Operator</th><th>Meaning</th></tr>
+        <tr><td><code>==</code></td><td>Equal</td></tr>
+        <tr><td><code>!=</code></td><td>Not equal</td></tr>
+        <tr><td><code>&lt;</code></td><td>Less than</td></tr>
+        <tr><td><code>&gt;</code></td><td>Greater than</td></tr>
+        <tr><td><code>&lt;=</code></td><td>Less or equal</td></tr>
+        <tr><td><code>&gt;=</code></td><td>Greater or equal</td></tr>
+        <tr><td><code>in</code></td><td>Membership (list, dict, string)</td></tr>
+        <tr><td><code>not in</code></td><td>Negative membership</td></tr>
+    </table>
+
+    <h3>Logical</h3>
+    <pre><code class="language-python">if x > 0 and x < 100:
+    /say x is between 0 and 100
+
+if hp == 0 or dead:
+    /say Player is dead
+
+if not is_banned:
+    /say Welcome!</code></pre>
+
+    <h3>Operator Precedence</h3>
+    <p>From lowest to highest: <code>or</code> → <code>and</code> → <code>not</code> → comparisons → <code>+ -</code> → <code>* / // %</code> → unary <code>-</code> → <code>**</code> → subscript/call/attribute</p>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ STRINGS ═══════════════════ -->
+    <h2 id="strings">Strings &amp; F-strings</h2>
+
+    <h3>String Literals</h3>
+    <pre><code class="language-python">s1 = "Hello, world!"
+s2 = 'Single quotes work too'
+s3 = "She said \"hi\""</code></pre>
+
+    <h3>F-strings (Interpolation)</h3>
+    <p>Any string that contains <code>{expr}</code> is treated as an f-string. Full expressions are supported inside braces.</p>
+    <pre><code class="language-python">name = "Steve"
+hp   = 15
+max_hp = 20
+
+/say Hello, {name}!                   # variable
+/say HP: {hp} / {max_hp}              # multiple
+/say Percent: {hp * 100 // max_hp}%   # expression
+/say Status: {name.upper()}           # method call
+
+msg = f"Player {name} has {hp} HP"
+/say {msg}</code></pre>
+
+    <p>To include a literal brace, double it:</p>
+    <pre><code class="language-python">/say Use {{curly braces}} to escape</code></pre>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ LISTS ═══════════════════ -->
+    <h2 id="lists">Lists</h2>
+    <pre><code class="language-python"># Create
+items = ["diamond", "sword", "potion"]
+nums  = [1, 2, 3, 4, 5]
+mixed = [1, "hello", True, None]
+empty = []
+
+# Access (0-indexed, negative indices supported)
+first = items[0]      # "diamond"
+last  = items[-1]     # "potion"
+
+# Modify
+items[1] = "axe"
+
+# Iterate
+for item in items:
+    /say {item}
+
+# Check membership
+if "diamond" in items:
+    /say Found!
+
+# Nested lists
+matrix = [[1, 2], [3, 4]]
+val = matrix[0][1]    # 2</code></pre>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ DICTS ═══════════════════ -->
+    <h2 id="dicts">Dictionaries</h2>
+    <pre><code class="language-python"># Create
+player = {"name": "Steve", "hp": 20, "level": 5}
+empty  = {}
+
+# Access
+name = player["name"]
+
+# Modify / add keys
+player["hp"]    = 15
+player["mana"]  = 100
+
+# Augmented
+player["hp"] -= 5
+
+# Iterate keys
+for key in player:
+    /say {key} = {player[key]}
+
+# Check key existence
+if "mana" in player:
+    /say Mana: {player["mana"]}</code></pre>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ CONTROL FLOW ═══════════════════ -->
+    <h2 id="control">Control Flow</h2>
+
+    <h3>If / Elif / Else</h3>
+    <pre><code class="language-python">hp = 8
+
+if hp <= 0:
+    /say You died!
+elif hp <= 5:
+    /say Critical health!
+elif hp <= 10:
+    /say Low health.
+else:
+    /say You are healthy.</code></pre>
+
+    <h3>For Loop</h3>
+    <pre><code class="language-python"># Over a list
+players = ["Steve", "Alex", "Notch"]
+for player in players:
+    /say Welcome, {player}!
+    wait(20)
+
+# Over range
+for i in range(5):           # 0 1 2 3 4
+    /say Tick {i}
+
+for i in range(1, 6):        # 1 2 3 4 5
+    /say {i}
+
+for i in range(10, 0, -2):   # 10 8 6 4 2
+    /say Countdown: {i}
+
+# Over string characters
+for ch in "abc":
+    /say Letter: {ch}
+
+# Tuple unpacking (pairs)
+pairs = [[1, "one"], [2, "two"], [3, "three"]]
+for num, word in pairs:
+    /say {num} = {word}
+
+# enumerate()
+for i, val in enumerate(players):
+    /say #{i}: {val}
+
+# zip()
+names  = ["Alice", "Bob"]
+scores = [100, 85]
+for name, score in zip(names, scores):
+    /say {name}: {score}</code></pre>
+
+    <h3>While Loop</h3>
+    <pre><code class="language-python">count = 10
+while count > 0:
+    /say Countdown: {count}
+    count -= 1
+    wait(20)
+/say Blast off!</code></pre>
+
+    <h3>Break &amp; Continue</h3>
+    <pre><code class="language-python">for i in range(20):
+    if i == 10:
+        break       # exit loop entirely
+    if i % 2 == 0:
+        continue    # skip to next iteration
+    /say {i}        # prints only odd numbers < 10</code></pre>
+
+    <h3>Pass</h3>
+    <pre><code class="language-python">def placeholder():
+    pass   # empty body — no-op</code></pre>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ FUNCTIONS ═══════════════════ -->
+    <h2 id="functions">Functions &amp; Macros</h2>
+
+    <h3>Basic Definition</h3>
+    <pre><code class="language-python">def greet(player):
+    /say Hello, {player}!
+
+def add(a, b):
+    return a + b
+
+result = add(3, 5)   # result = 8
+greet("Steve")</code></pre>
+
+    <h3>Default Parameters</h3>
+    <pre><code class="language-python">def give(player, item, amount=1):
+    /give {player} minecraft:{item} {amount}
+
+give("Steve", "diamond")       # amount defaults to 1
+give("Alex", "emerald", 64)    # amount = 64</code></pre>
+
+    <h3>Return Values</h3>
+    <pre><code class="language-python">def max_of(a, b):
+    if a > b:
+        return a
+    return b
+
+def is_alive(hp):
+    return hp > 0
+
+bigger = max_of(10, 7)   # 10
+alive  = is_alive(5)     # True</code></pre>
+
+    <h3>Nested Functions</h3>
+    <pre><code class="language-python">def outer(x):
+    def inner(y):
+        return x + y   # inner closes over x
+    result = inner(10)
+    return result
+
+/say {outer(5)}   # 15</code></pre>
+
+    <h3>@macro — Caller-Scope Functions</h3>
+    <p>A function decorated with <code>@macro</code> runs <strong>inside the caller's scope</strong> — it can read and write the caller's variables directly. Ideal for reusable command blocks.</p>
+    <pre><code class="language-python">@macro
+def give_reward(player, amount):
+    /give {player} minecraft:diamond {amount}
+    /xp add {player} {amount * 10} points
+    /say {player} received a reward!
+
+give_reward("Steve", 5)
+give_reward("Alex", 10)</code></pre>
+
+    <div class="note">
+        <strong>💡 macro vs def:</strong> A regular <code>def</code> creates its own isolated scope. A <code>@macro</code> shares the caller's scope — variables it sets are visible to the caller after it returns.
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ SCOPE ═══════════════════ -->
+    <h2 id="scope">Scope &amp; Global</h2>
+    <p>Variables defined inside a function are local. Use <code>global</code> to write to the global scope.</p>
+    <pre><code class="language-python">counter = 0
+
+def increment():
+    global counter
+    counter += 1
+
+increment()
+increment()
+/say Counter: {counter}   # 2</code></pre>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ IMPORTS ═══════════════════ -->
+    <h2 id="imports">Imports &amp; Modules</h2>
+    <p>Scripts can import functions and variables from other <code>.script</code> files. Dot notation maps to subdirectories.</p>
+
+    <h3>Import Forms</h3>
+    <table>
+        <tr><th>Syntax</th><th>Result</th></tr>
+        <tr><td><code>import utils</code></td><td>Loads <code>utils.script</code>, binds as <code>utils</code> object</td></tr>
+        <tr><td><code>import utils as u</code></td><td>Same, bound as <code>u</code></td></tr>
+        <tr><td><code>import lib.math</code></td><td>Loads <code>lib/math.script</code>, bound as <code>math</code></td></tr>
+        <tr><td><code>import lib.math as m</code></td><td>Loads <code>lib/math.script</code>, bound as <code>m</code></td></tr>
+        <tr><td><code>from utils import *</code></td><td>All functions &amp; variables in current scope</td></tr>
+        <tr><td><code>from utils import greet</code></td><td>Only <code>greet</code></td></tr>
+        <tr><td><code>from utils import greet, MAX</code></td><td>Multiple names</td></tr>
+        <tr><td><code>from utils import greet as hi</code></td><td>With alias</td></tr>
+        <tr><td><code>from utils import greet as hi, MAX as LIMIT</code></td><td>Multiple with aliases</td></tr>
+    </table>
+
+    <h3>Usage Examples</h3>
+    <pre><code class="language-python"># Module object — access with dot notation
+import lib.math as m
+result = m.sqrt(144)
+/say Sqrt: {result}
+
+# Merge into current scope
+from lib.math import *
+result = sqrt(25)     # no prefix needed
+
+# Selective import with alias
+from lib.math import clamp as c, lerp
+health = c(player_hp, 0, 20)
+t = lerp(0, 100, 0.5)</code></pre>
+
+    <h3>Module Attributes</h3>
+    <pre><code class="language-python">import math
+
+# Access a variable
+/say PI = {math.PI}
+
+# Call a function
+r = math.sqrt(9)
+
+# Subscript access also works
+r = math["sqrt"](16)
+
+# Check if member exists
+if hasattr(math, "sin"):
+    /say math has sin
+
+# Dynamic access
+fn_name = "cos"
+val = getattr(math, fn_name)</code></pre>
+
+    <h3>Directory Structure</h3>
+    <pre><code class="language-python">scripts/
+├── main.script
+├── math.script
+├── lib/
+│   ├── utils.script
+│   └── rewards.script
+└── events/
+    └── on_join.script</code></pre>
+
+    <div class="note">
+        <strong>📦 Module Cache:</strong> Each module is parsed only once per server session and cached automatically. Running <code>/scripts reload</code> clears the cache so updated library files are picked up.
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ ANNOTATIONS ═══════════════════ -->
+    <h2 id="annotations">Script Annotations</h2>
+    <p>Annotations appear at the very top of a script file (before any code).</p>
+
+    <table>
+        <tr><th>Annotation</th><th>Meaning</th></tr>
+        <tr>
+            <td><code>@PREPARE</code></td>
+            <td>Script runs automatically on server start and on <code>/scripts reload</code>.</td>
+        </tr>
+        <tr>
+            <td><code>@LIBRARY</code></td>
+            <td>When imported, only definitions (functions, variable assignments) are loaded. Top-level commands and <code>wait()</code> calls are skipped. <em>This is the default behavior when a script is imported.</em></td>
+        </tr>
+        <tr>
+            <td><code>@RUN</code></td>
+            <td>When imported, the entire script is executed including top-level commands (overrides <code>@LIBRARY</code> behavior).</td>
+        </tr>
+    </table>
+
+    <pre><code class="language-python">@PREPARE
+# This script runs when the server starts
+
+/say Server started!
+
+def on_ready():
+    /say All systems go.
+
+on_ready()</code></pre>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ PREPROCESSOR ═══════════════════ -->
+    <h2 id="preprocessor">Preprocessor — #define</h2>
+    <p><code>#define</code> performs text substitution across the entire script <strong>before</strong> execution. The define lines themselves are removed from the source.</p>
+
+    <pre><code class="language-python">#define MAX_HP       20
+#define SPAWN_X      0
+#define SPAWN_Y      64
+#define SPAWN_Z      0
+#define WELCOME_MSG  "Welcome to the server!"
+
+hp = MAX_HP                           # becomes: hp = 20
+/tp @s {SPAWN_X} {SPAWN_Y} {SPAWN_Z} # /tp @s 0 64 0
+/say {WELCOME_MSG}                    # /say Welcome to the server!</code></pre>
+
+    <div class="note">
+        <strong>💡 Note:</strong> Substitution uses word boundaries — <code>MAX</code> won't accidentally replace inside <code>MAXIMUM</code>. Quoted string values have their quotes stripped in the replacement.
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ MINECRAFT COMMANDS ═══════════════════ -->
+    <h2 id="commands">Minecraft Commands</h2>
+    <p>Any line starting with <code>/</code> executes a server command. Variable interpolation works exactly like f-strings.</p>
+
+    <h3>Basic Usage</h3>
+    <pre><code class="language-python">player = "Steve"
+x, y, z = 100, 64, 200
+
+/say Hello, {player}!
+/tp {player} {x} {y} {z}
+/give {player} minecraft:diamond 10
+/summon minecraft:zombie {x} {y} {z}
+/effect give {player} minecraft:speed 30 2</code></pre>
+
+    <h3>Expressions in Commands</h3>
+    <pre><code class="language-python">hp    = 15
+maxhp = 20
+
+/say HP: {hp}/{maxhp} ({hp * 100 // maxhp}%)
+/give @a minecraft:experience_bottle {level * 2}</code></pre>
+
+    <h3>Tellraw &amp; JSON Commands</h3>
+    <pre><code class="language-python">/tellraw @a {"text":"Red message","color":"red"}
+/tellraw @a [{"text":"Gold ","color":"gold"},{"text":"Blue","color":"blue"}]</code></pre>
+
+    <h3>Commands Inside Functions</h3>
+    <pre><code class="language-python">def announce(msg, color):
+    /tellraw @a {"text":"{msg}","color":"{color}"}
+
+def tp_spawn(player):
+    /tp {player} 0 64 0
+    /say {player} was teleported to spawn.
+
+announce("Match starts in 10s!", "gold")
+tp_spawn("Steve")</code></pre>
+
+    <div class="note">
+        <strong>⚙️ Threading:</strong> Each script runs on its own thread. Every command is submitted to the server thread and waits for completion before the next line runs — execution order is always sequential.
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ BUILT-INS ═══════════════════ -->
+    <h2 id="builtins">Built-in Functions</h2>
+
+    <h3>I/O &amp; Timing</h3>
+    <table>
+        <tr><th>Function</th><th>Description</th><th>Example</th></tr>
+        <tr>
+            <td><code>print(…)</code></td>
+            <td>Print to server console (not in-game). Accepts multiple arguments separated by spaces.</td>
+            <td><code>print("debug", x)</code></td>
+        </tr>
+        <tr>
+            <td><code>wait(ticks)</code></td>
+            <td>Pause execution. 20 ticks = 1 second. Stopping the script during <code>wait()</code> works correctly.</td>
+            <td><code>wait(40)</code> → 2 s</td>
+        </tr>
+    </table>
+
+    <h3>Type Conversion</h3>
+    <table>
+        <tr><th>Function</th><th>Description</th><th>Example</th></tr>
+        <tr><td><code>int(x)</code></td><td>Convert to integer</td><td><code>int("42")</code> → <code>42</code></td></tr>
+        <tr><td><code>float(x)</code></td><td>Convert to float</td><td><code>float("3.14")</code> → <code>3.14</code></td></tr>
+        <tr><td><code>str(x)</code></td><td>Convert to string</td><td><code>str(100)</code> → <code>"100"</code></td></tr>
+        <tr><td><code>bool(x)</code></td><td>Convert to boolean</td><td><code>bool(0)</code> → <code>False</code></td></tr>
+        <tr><td><code>list(x)</code></td><td>Convert/copy to list (strings become character lists)</td><td><code>list("abc")</code> → <code>['a','b','c']</code></td></tr>
+        <tr><td><code>dict()</code></td><td>Create empty dict or copy</td><td><code>dict()</code> → <code>{}</code></td></tr>
+    </table>
+
+    <h3>Math</h3>
+    <table>
+        <tr><th>Function</th><th>Description</th><th>Example</th></tr>
+        <tr><td><code>abs(x)</code></td><td>Absolute value</td><td><code>abs(-5)</code> → <code>5</code></td></tr>
+        <tr><td><code>min(a, b, …)</code> or <code>min(list)</code></td><td>Minimum value</td><td><code>min(3, 1, 4)</code> → <code>1</code></td></tr>
+        <tr><td><code>max(a, b, …)</code> or <code>max(list)</code></td><td>Maximum value</td><td><code>max([5, 2, 8])</code> → <code>8</code></td></tr>
+        <tr><td><code>round(x)</code> / <code>round(x, n)</code></td><td>Round to n decimal places</td><td><code>round(3.14159, 2)</code> → <code>3.14</code></td></tr>
+        <tr><td><code>sum(list)</code></td><td>Sum all elements</td><td><code>sum([1,2,3])</code> → <code>6</code></td></tr>
+    </table>
+
+    <h3>Sequence &amp; Collections</h3>
+    <table>
+        <tr><th>Function</th><th>Description</th><th>Example</th></tr>
+        <tr><td><code>len(x)</code></td><td>Length of list, dict, or string</td><td><code>len([1,2,3])</code> → <code>3</code></td></tr>
+        <tr><td><code>range(n)</code></td><td>0 to n-1</td><td><code>range(5)</code> → <code>[0,1,2,3,4]</code></td></tr>
+        <tr><td><code>range(start, end)</code></td><td>start to end-1</td><td><code>range(2, 5)</code> → <code>[2,3,4]</code></td></tr>
+        <tr><td><code>range(start, end, step)</code></td><td>With step (can be negative)</td><td><code>range(0,10,2)</code> → <code>[0,2,4,6,8]</code></td></tr>
+        <tr><td><code>sorted(list)</code></td><td>Return sorted copy (ascending)</td><td><code>sorted([3,1,2])</code> → <code>[1,2,3]</code></td></tr>
+        <tr><td><code>reversed(list)</code></td><td>Return reversed copy</td><td><code>reversed([1,2,3])</code> → <code>[3,2,1]</code></td></tr>
+        <tr><td><code>enumerate(list)</code></td><td>List of <code>[index, value]</code> pairs</td><td><code>enumerate(["a","b"])</code> → <code>[[0,"a"],[1,"b"]]</code></td></tr>
+        <tr><td><code>zip(a, b)</code></td><td>Pair up two lists element-wise</td><td><code>zip([1,2],["a","b"])</code> → <code>[[1,"a"],[2,"b"]]</code></td></tr>
+    </table>
+
+    <h3>Introspection</h3>
+    <table>
+        <tr><th>Function</th><th>Description</th><th>Example</th></tr>
+        <tr><td><code>type(x)</code></td><td>Type name as string</td><td><code>type(3.14)</code> → <code>"float"</code></td></tr>
+        <tr><td><code>hasattr(mod, name)</code></td><td>Check if module has member</td><td><code>hasattr(math, "sqrt")</code></td></tr>
+        <tr><td><code>getattr(mod, name)</code></td><td>Get module member by name string</td><td><code>getattr(math, "PI")</code></td></tr>
+        <tr><td><code>getattr(mod, name, default)</code></td><td>With fallback default</td><td><code>getattr(m, "x", 0)</code></td></tr>
+    </table>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ LIST METHODS ═══════════════════ -->
+    <h2 id="list-methods">List Methods</h2>
+    <pre><code class="language-python">lst = [3, 1, 4, 1, 5]</code></pre>
+    <table>
+        <tr><th>Method</th><th>Description</th><th>Example</th></tr>
+        <tr><td><code>.append(x)</code></td><td>Add element to end</td><td><code>lst.append(9)</code></td></tr>
+        <tr><td><code>.extend(other)</code></td><td>Append all elements of another list</td><td><code>lst.extend([6, 7])</code></td></tr>
+        <tr><td><code>.insert(i, x)</code></td><td>Insert x at index i</td><td><code>lst.insert(0, 99)</code></td></tr>
+        <tr><td><code>.remove(x)</code></td><td>Remove first occurrence of x</td><td><code>lst.remove(1)</code></td></tr>
+        <tr><td><code>.pop()</code> / <code>.pop(i)</code></td><td>Remove and return last (or index i)</td><td><code>lst.pop()</code></td></tr>
+        <tr><td><code>.clear()</code></td><td>Remove all elements</td><td><code>lst.clear()</code></td></tr>
+        <tr><td><code>.sort()</code></td><td>Sort in-place ascending</td><td><code>lst.sort()</code></td></tr>
+        <tr><td><code>.reverse()</code></td><td>Reverse in-place</td><td><code>lst.reverse()</code></td></tr>
+        <tr><td><code>.copy()</code></td><td>Return a shallow copy</td><td><code>copy = lst.copy()</code></td></tr>
+        <tr><td><code>.count(x)</code></td><td>Count occurrences of x</td><td><code>lst.count(1)</code> → <code>2</code></td></tr>
+        <tr><td><code>.index(x)</code></td><td>First index of x (or -1)</td><td><code>lst.index(4)</code> → <code>2</code></td></tr>
+    </table>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ DICT METHODS ═══════════════════ -->
+    <h2 id="dict-methods">Dictionary Methods</h2>
+    <pre><code class="language-python">d = {"hp": 20, "mp": 50}</code></pre>
+    <table>
+        <tr><th>Method</th><th>Description</th><th>Example</th></tr>
+        <tr><td><code>.get(key)</code> / <code>.get(key, default)</code></td><td>Safe access with optional default</td><td><code>d.get("xp", 0)</code></td></tr>
+        <tr><td><code>.keys()</code></td><td>List of all keys</td><td><code>d.keys()</code> → <code>["hp","mp"]</code></td></tr>
+        <tr><td><code>.values()</code></td><td>List of all values</td><td><code>d.values()</code> → <code>[20,50]</code></td></tr>
+        <tr><td><code>.items()</code></td><td>List of <code>[key, value]</code> pairs</td><td><code>d.items()</code></td></tr>
+        <tr><td><code>.pop(key)</code></td><td>Remove and return value for key</td><td><code>d.pop("mp")</code></td></tr>
+        <tr><td><code>.update(other)</code></td><td>Merge another dict in</td><td><code>d.update({"xp": 10})</code></td></tr>
+        <tr><td><code>.clear()</code></td><td>Remove all keys</td><td><code>d.clear()</code></td></tr>
+        <tr><td><code>.copy()</code></td><td>Return a shallow copy</td><td><code>copy = d.copy()</code></td></tr>
+        <tr><td><code>.setdefault(key, val)</code></td><td>Set key only if not already present</td><td><code>d.setdefault("xp", 0)</code></td></tr>
+        <tr><td><code>.has_key(key)</code> / <code>.contains(key)</code></td><td>Check if key exists</td><td><code>d.has_key("hp")</code> → <code>True</code></td></tr>
+    </table>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ STRING METHODS ═══════════════════ -->
+    <h2 id="str-methods">String Methods</h2>
+    <pre><code class="language-python">s = "  Hello, World!  "</code></pre>
+    <table>
+        <tr><th>Method</th><th>Description</th><th>Example</th></tr>
+        <tr><td><code>.upper()</code></td><td>Uppercase</td><td><code>"hi".upper()</code> → <code>"HI"</code></td></tr>
+        <tr><td><code>.lower()</code></td><td>Lowercase</td><td><code>"HI".lower()</code> → <code>"hi"</code></td></tr>
+        <tr><td><code>.strip()</code></td><td>Remove leading/trailing whitespace</td><td><code>s.strip()</code></td></tr>
+        <tr><td><code>.lstrip()</code></td><td>Remove leading whitespace</td><td><code>s.lstrip()</code></td></tr>
+        <tr><td><code>.rstrip()</code></td><td>Remove trailing whitespace</td><td><code>s.rstrip()</code></td></tr>
+        <tr><td><code>.split()</code> / <code>.split(sep)</code></td><td>Split by whitespace or separator</td><td><code>"a,b,c".split(",")</code> → <code>["a","b","c"]</code></td></tr>
+        <tr><td><code>sep.join(list)</code></td><td>Join list into string with separator</td><td><code>",".join(["a","b"])</code> → <code>"a,b"</code></td></tr>
+        <tr><td><code>.replace(old, new)</code></td><td>Replace all occurrences</td><td><code>"hi hi".replace("hi","bye")</code></td></tr>
+        <tr><td><code>.startswith(s)</code></td><td>Check prefix</td><td><code>"hello".startswith("he")</code> → <code>True</code></td></tr>
+        <tr><td><code>.endswith(s)</code></td><td>Check suffix</td><td><code>"hello".endswith("lo")</code> → <code>True</code></td></tr>
+        <tr><td><code>.contains(s)</code></td><td>Check if substring present</td><td><code>"hello".contains("ell")</code> → <code>True</code></td></tr>
+        <tr><td><code>.find(s)</code> / <code>.index(s)</code></td><td>First index of substring (-1 if absent)</td><td><code>"hello".find("l")</code> → <code>2</code></td></tr>
+        <tr><td><code>.count(s)</code></td><td>Count non-overlapping occurrences</td><td><code>"aaa".count("a")</code> → <code>3</code></td></tr>
+        <tr><td><code>.format(…)</code></td><td>Replace <code>{}</code> placeholders in order</td><td><code>"{} + {} = {}".format(1,2,3)</code></td></tr>
+        <tr><td><code>.zfill(n)</code></td><td>Zero-pad to width n</td><td><code>"7".zfill(3)</code> → <code>"007"</code></td></tr>
+        <tr><td><code>.isdigit()</code></td><td>True if all characters are digits</td><td><code>"123".isdigit()</code> → <code>True</code></td></tr>
+        <tr><td><code>.isalpha()</code></td><td>True if all characters are letters</td><td><code>"abc".isalpha()</code> → <code>True</code></td></tr>
+        <tr><td><code>.isalnum()</code></td><td>True if all are letters or digits</td><td><code>"abc123".isalnum()</code> → <code>True</code></td></tr>
+        <tr><td><code>.len()</code></td><td>Length (also: <code>len(s)</code>)</td><td><code>"hello".len()</code> → <code>5</code></td></tr>
+    </table>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ EXAMPLES ═══════════════════ -->
+    <h2 id="examples">💡 Examples</h2>
+
+    <h3>Countdown Timer</h3>
+    <pre><code class="language-python">def countdown(seconds):
+    count = seconds
+    while count > 0:
+        /title @a times 10 40 10
+        /title @a subtitle {"text":"{count}","color":"gold"}
+        /title @a title {"text":"Event starts in","color":"white"}
+        count -= 1
+        wait(20)
+    /title @a title {"text":"GO!","color":"green"}
+
+countdown(10)</code></pre>
+
+    <h3>Loot Drop Event</h3>
+    <pre><code class="language-python">#define LOOT_X   0
+#define LOOT_Y   65
+#define LOOT_Z   0
+
+loot_table = [
+    ["minecraft:diamond", 3],
+    ["minecraft:emerald", 5],
+    ["minecraft:gold_ingot", 10],
+    ["minecraft:iron_ingot", 20],
+]
+
+/say A loot drop is incoming!
+wait(60)
+
+for entry in loot_table:
+    item   = entry[0]
+    amount = entry[1]
+    /summon minecraft:item {LOOT_X} {LOOT_Y} {LOOT_Z} {Item:{id:"{item}",Count:{amount}}}
+    wait(10)
+
+/say Loot has dropped at 0 65 0!</code></pre>
+
+    <h3>Player Stats Board</h3>
+    <pre><code class="language-python">from lib.utils import *
+
+players = ["Steve", "Alex", "Notch"]
+scores  = [1200, 980, 1450]
+
+/say §6§l══════ LEADERBOARD ══════
+for i, player in enumerate(players):
+    score = scores[i]
+    rank  = i + 1
+    /say §e#{rank} §f{player} §7— §a{score} pts
+    wait(5)
+/say §6§l══════════════════════════</code></pre>
+
+    <h3>Using the math Library</h3>
+    <pre><code class="language-python">from math import sqrt, clamp, lerp, PI, distance_3d
+
+player_x, player_y, player_z = 10, 64, -30
+boss_x,   boss_y,   boss_z   = 0,  64,  0
+
+dist = distance_3d(player_x, player_y, player_z,
+                   boss_x,   boss_y,   boss_z)
+
+damage = clamp(100 - int(dist), 0, 100)
+/say Distance to boss: {int(dist)} blocks
+/say Explosion damage: {damage}
+
+# Circular patrol path
+radius = 20
+for i in range(36):
+    angle = i * 10 * PI / 180
+    nx = int(boss_x + radius * sqrt(1 - angle % 1))
+    wait(2)</code></pre>
+
+    <h3>Reusable @macro Library</h3>
+    <pre><code class="language-python">@LIBRARY
+
+@macro
+def broadcast(msg):
+    /say [Server] {msg}
+
+@macro
+def warn_player(player, reason):
+    /tell {player} §cWarning: {reason}
+    /say §c{player} was warned: {reason}
+
+def give_kit(player, kit):
+    if kit == "starter":
+        /give {player} minecraft:wooden_sword 1
+        /give {player} minecraft:bread 8
+    elif kit == "pvp":
+        /give {player} minecraft:diamond_sword 1
+        /give {player} minecraft:golden_apple 3
+    else:
+        /say Unknown kit: {kit}</code></pre>
+
+    <h3>Module Import — Full Example</h3>
+    <pre><code class="language-python"># main.script
+import lib.rewards as rw
+from lib.kits import give_kit
+from math import clamp, distance_2d
+
+player = "Steve"
+px, pz = 150, -80
+
+dist = distance_2d(px, pz, 0, 0)
+bonus = clamp(int(dist // 10), 0, 20)
+
+rw.reward_diamonds(player, 5 + bonus)
+give_kit(player, "starter")
+/say {player} joined and received a welcome kit!</code></pre>
+
+    <div class="warn">
+        <strong>⚠️ Stopping Scripts:</strong> Use <code>/scripts stop &lt;name&gt;</code> or <code>/scripts stopall</code> to stop running scripts safely. The engine will abort at the next statement boundary or immediately if inside <code>wait()</code> — no commands will run after a stop is requested.
+    </div>
+
+    <footer>
+        <p>Advanced Scripts Mod — Language Reference | Minecraft Forge 1.20.1</p>
+        <div class="footer-links">
+            <a href="https://www.curseforge.com/minecraft/mc-mods/advanced-scripts" target="_blank">⬇ Download on CurseForge</a>
+        </div>
+    </footer>
+</div>
+
+<script>Prism.highlightAll();</script>
 </body>
 </html>
