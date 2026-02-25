@@ -317,6 +317,18 @@
             <li><a href="#str-methods">String Methods</a></li>
             <li><a href="#examples">Examples</a></li>
         </ul>
+        <ul>
+            <li><a href="#mc-data">🎮 Minecraft Data</a></li>
+            <li><a href="#mc-player-presence">↳ Player — Presence</a></li>
+            <li><a href="#mc-player-stats">↳ Player — Stats</a></li>
+            <li><a href="#mc-player-position">↳ Player — Position</a></li>
+            <li><a href="#mc-player-flags">↳ Player — State</a></li>
+            <li><a href="#mc-player-inventory">↳ Player — Inventory</a></li>
+            <li><a href="#mc-player-nbt">↳ Player — NBT</a></li>
+            <li><a href="#mc-world">↳ World &amp; Server</a></li>
+            <li><a href="#mc-blocks">↳ Blocks</a></li>
+            <li><a href="#mc-examples">↳ Data Examples</a></li>
+        </ul>
     </div>
 
     <div class="section-divider"></div>
@@ -1064,6 +1076,533 @@ give_kit(player, "starter")
     <div class="warn">
         <strong>⚠️ Stopping Scripts:</strong> Use <code>/scripts stop &lt;name&gt;</code> or <code>/scripts stopall</code> to stop running scripts safely. The engine will abort at the next statement boundary or immediately if inside <code>wait()</code> — no commands will run after a stop is requested.
     </div>
+
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ MINECRAFT DATA FUNCTIONS ═══════════════════ -->
+    <h2 id="mc-data">🎮 Minecraft Data Functions</h2>
+    <p>These built-in functions query live server data directly from scripts — no commands required. All calls are thread-safe: they block the script thread until the server thread has returned the value.</p>
+
+    <div class="note">
+        <strong>💡 Thread Safety:</strong> Every data function runs on the server thread internally and blocks the script thread until the result is ready (10-second timeout). They are safe to call from any point in a script, including inside loops and functions.
+    </div>
+
+    <!-- ── Player — Presence ── -->
+    <h2 id="mc-player-presence">Player — Presence &amp; List</h2>
+
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr>
+            <td><code>player_online(name)</code></td>
+            <td><code>bool</code></td>
+            <td>Returns <code>True</code> if a player with this exact name is currently online.</td>
+        </tr>
+        <tr>
+            <td><code>player_list()</code></td>
+            <td><code>list</code> of <code>str</code></td>
+            <td>Returns a list of all online player names.</td>
+        </tr>
+        <tr>
+            <td><code>player_count()</code></td>
+            <td><code>int</code></td>
+            <td>Number of players currently online.</td>
+        </tr>
+    </table>
+
+    <pre><code class="language-python">if player_online("Steve"):
+    /say Steve is online!
+
+all_players = player_list()
+for p in all_players:
+    /say {p} is connected
+
+/say {player_count()} players online</code></pre>
+
+    <!-- ── Player — Stats ── -->
+    <h2 id="mc-player-stats">Player — Stats</h2>
+
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr>
+            <td><code>player_health(name)</code></td>
+            <td><code>float</code></td>
+            <td>Current health points (e.g. <code>18.5</code>). Returns <code>0.0</code> if offline.</td>
+        </tr>
+        <tr>
+            <td><code>player_max_health(name)</code></td>
+            <td><code>float</code></td>
+            <td>Maximum health (base is <code>20.0</code>, can be higher with effects/attributes).</td>
+        </tr>
+        <tr>
+            <td><code>player_hunger(name)</code></td>
+            <td><code>int</code> (0–20)</td>
+            <td>Current food level.</td>
+        </tr>
+        <tr>
+            <td><code>player_saturation(name)</code></td>
+            <td><code>float</code></td>
+            <td>Food saturation level.</td>
+        </tr>
+        <tr>
+            <td><code>player_level(name)</code></td>
+            <td><code>int</code></td>
+            <td>XP level (e.g. <code>32</code>).</td>
+        </tr>
+        <tr>
+            <td><code>player_xp(name)</code></td>
+            <td><code>float</code> (0.0–1.0)</td>
+            <td>Progress bar within the current XP level.</td>
+        </tr>
+        <tr>
+            <td><code>player_total_xp(name)</code></td>
+            <td><code>int</code></td>
+            <td>Total XP points accumulated (not the level bar).</td>
+        </tr>
+        <tr>
+            <td><code>player_gamemode(name)</code></td>
+            <td><code>str</code></td>
+            <td>One of <code>"survival"</code>, <code>"creative"</code>, <code>"adventure"</code>, <code>"spectator"</code>.</td>
+        </tr>
+    </table>
+
+    <pre><code class="language-python">hp    = player_health("Steve")
+maxhp = player_max_health("Steve")
+pct   = int(hp * 100 / maxhp)
+
+/say HP: {hp}/{maxhp} ({pct}%)
+
+if hp < 6:
+    /effect give Steve minecraft:regeneration 10 2
+    /say Steve is low HP — healing!
+
+lvl = player_level("Steve")
+gm  = player_gamemode("Steve")
+/say Level {lvl} — Mode: {gm}</code></pre>
+
+    <!-- ── Player — Position ── -->
+    <h2 id="mc-player-position">Player — Position &amp; Rotation</h2>
+
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr>
+            <td><code>player_x(name)</code></td>
+            <td><code>float</code></td>
+            <td>X coordinate.</td>
+        </tr>
+        <tr>
+            <td><code>player_y(name)</code></td>
+            <td><code>float</code></td>
+            <td>Y coordinate (feet level).</td>
+        </tr>
+        <tr>
+            <td><code>player_z(name)</code></td>
+            <td><code>float</code></td>
+            <td>Z coordinate.</td>
+        </tr>
+        <tr>
+            <td><code>player_pos(name)</code></td>
+            <td><code>[x, y, z]</code></td>
+            <td>Position as a list — convenient for destructuring.</td>
+        </tr>
+        <tr>
+            <td><code>player_yaw(name)</code></td>
+            <td><code>float</code></td>
+            <td>Horizontal rotation in degrees. 0 = south, 90 = west, ±180 = north, −90 = east.</td>
+        </tr>
+        <tr>
+            <td><code>player_pitch(name)</code></td>
+            <td><code>float</code></td>
+            <td>Vertical rotation in degrees. −90 = looking up, 0 = horizontal, 90 = looking down.</td>
+        </tr>
+        <tr>
+            <td><code>player_dimension(name)</code></td>
+            <td><code>str</code></td>
+            <td>Current dimension: <code>"overworld"</code>, <code>"the_nether"</code>, or <code>"the_end"</code>.</td>
+        </tr>
+    </table>
+
+    <pre><code class="language-python">pos = player_pos("Steve")
+x = pos[0]
+y = pos[1]
+z = pos[2]
+/say Steve is at {int(x)}, {int(y)}, {int(z)}
+
+dim = player_dimension("Steve")
+if dim == "the_nether":
+    /say Steve is in the Nether!
+
+# Distance check from spawn
+from math import distance_3d
+dist = distance_3d(x, y, z, 0, 64, 0)
+/say Distance from world origin: {int(dist)} blocks
+
+yaw   = player_yaw("Steve")
+pitch = player_pitch("Steve")
+/say Looking: yaw={int(yaw)}° pitch={int(pitch)}°</code></pre>
+
+    <!-- ── Player — State Flags ── -->
+    <h2 id="mc-player-flags">Player — State Flags</h2>
+
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>True when…</th></tr>
+        <tr><td><code>player_flying(name)</code></td><td><code>bool</code></td><td>Player is flying (creative/spectator or elytra).</td></tr>
+        <tr><td><code>player_sneaking(name)</code></td><td><code>bool</code></td><td>Player is holding sneak (Shift).</td></tr>
+        <tr><td><code>player_sprinting(name)</code></td><td><code>bool</code></td><td>Player is sprinting.</td></tr>
+        <tr><td><code>player_on_ground(name)</code></td><td><code>bool</code></td><td>Player is standing on a solid surface.</td></tr>
+        <tr><td><code>player_in_water(name)</code></td><td><code>bool</code></td><td>Player is submerged in water.</td></tr>
+        <tr><td><code>player_is_op(name)</code></td><td><code>bool</code></td><td>Player has operator permissions on the server.</td></tr>
+    </table>
+
+    <pre><code class="language-python">if player_flying("Steve") and not player_is_op("Steve"):
+    /say Steve is flying without OP!
+    /effect give Steve minecraft:slowness 5 10
+
+if player_sneaking("Steve"):
+    /say Psst… Steve is sneaking.
+
+if player_in_water("Steve"):
+    /say Steve is swimming!</code></pre>
+
+    <!-- ── Player — Inventory ── -->
+    <h2 id="mc-player-inventory">Player — Inventory</h2>
+
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr>
+            <td><code>player_hand(name)</code></td>
+            <td><code>dict</code></td>
+            <td>
+                Item currently held in the main hand.<br>
+                Keys: <code>"id"</code> (e.g. <code>"minecraft:diamond_sword"</code>), <code>"count"</code> (<code>int</code>), <code>"name"</code> (display name <code>str</code>).<br>
+                Returns <code>{"id": "air", "count": 0, "name": ""}</code> if hand is empty.
+            </td>
+        </tr>
+        <tr>
+            <td><code>player_inventory(name)</code></td>
+            <td><code>list</code> of <code>dict</code></td>
+            <td>
+                All non-empty inventory slots. Each dict has:<br>
+                <code>"slot"</code> (<code>int</code>), <code>"id"</code>, <code>"count"</code>, <code>"name"</code>.<br>
+                Slot 0–8 = hotbar, 9–35 = main inventory, 36–39 = armor, 40 = offhand.
+            </td>
+        </tr>
+    </table>
+
+    <pre><code class="language-python"># Check what Steve is holding
+hand = player_hand("Steve")
+if hand["id"] == "minecraft:diamond_sword":
+    /say Steve has a diamond sword drawn!
+
+# Find if player has a specific item
+inv = player_inventory("Steve")
+has_apple = False
+for item in inv:
+    if "apple" in item["id"]:
+        has_apple = True
+        break
+
+if not has_apple:
+    /give Steve minecraft:apple 5
+    /say Steve needed apples — here you go!
+
+# Print full inventory
+/say Steve's inventory ({len(inv)} items):
+for item in inv:
+    /say  Slot {item["slot"]}: {item["id"]} x{item["count"]}</code></pre>
+
+    <!-- ── Player — NBT ── -->
+    <h2 id="mc-player-nbt">Player — NBT</h2>
+    <p>These functions return structured data equivalent to what you'd see with <code>/data get entity &lt;player&gt;</code>, but as native script values ready to use in expressions.</p>
+
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr>
+            <td><code>player_nbt(name)</code></td>
+            <td><code>dict</code></td>
+            <td>Full snapshot of all key player fields. See table below for all keys.</td>
+        </tr>
+        <tr>
+            <td><code>player_nbt_tag(name, tag)</code></td>
+            <td><code>any</code></td>
+            <td>Single field by key name. Returns <code>None</code> if the player is offline or the tag doesn't exist.</td>
+        </tr>
+    </table>
+
+    <h3>NBT Keys</h3>
+    <table>
+        <tr><th>Key</th><th>Type</th><th>Description</th></tr>
+        <tr><td><code>Health</code></td><td><code>float</code></td><td>Current health</td></tr>
+        <tr><td><code>MaxHealth</code></td><td><code>float</code></td><td>Max health</td></tr>
+        <tr><td><code>FoodLevel</code></td><td><code>int</code></td><td>Hunger (0–20)</td></tr>
+        <tr><td><code>FoodSaturation</code></td><td><code>float</code></td><td>Saturation</td></tr>
+        <tr><td><code>XpLevel</code></td><td><code>int</code></td><td>XP level</td></tr>
+        <tr><td><code>XpProgress</code></td><td><code>float</code></td><td>XP bar progress (0.0–1.0)</td></tr>
+        <tr><td><code>TotalXp</code></td><td><code>int</code></td><td>Total XP points</td></tr>
+        <tr><td><code>Score</code></td><td><code>int</code></td><td>Death score</td></tr>
+        <tr><td><code>GameMode</code></td><td><code>str</code></td><td>"survival" / "creative" / …</td></tr>
+        <tr><td><code>PosX</code> / <code>PosY</code> / <code>PosZ</code></td><td><code>float</code></td><td>World coordinates</td></tr>
+        <tr><td><code>Yaw</code> / <code>Pitch</code></td><td><code>float</code></td><td>Head rotation</td></tr>
+        <tr><td><code>Dimension</code></td><td><code>str</code></td><td>Current dimension path</td></tr>
+        <tr><td><code>Flying</code></td><td><code>bool</code></td><td>Currently flying</td></tr>
+        <tr><td><code>Sneaking</code></td><td><code>bool</code></td><td>Currently sneaking</td></tr>
+        <tr><td><code>Sprinting</code></td><td><code>bool</code></td><td>Currently sprinting</td></tr>
+        <tr><td><code>OnGround</code></td><td><code>bool</code></td><td>Standing on ground</td></tr>
+        <tr><td><code>InWater</code></td><td><code>bool</code></td><td>Submerged in water</td></tr>
+        <tr><td><code>IsOp</code></td><td><code>bool</code></td><td>Has operator permissions</td></tr>
+        <tr><td><code>Name</code></td><td><code>str</code></td><td>Player name</td></tr>
+        <tr><td><code>UUID</code></td><td><code>str</code></td><td>Player UUID string</td></tr>
+    </table>
+
+    <pre><code class="language-python"># Full NBT snapshot
+nbt = player_nbt("Steve")
+/say HP:   {nbt["Health"]} / {nbt["MaxHealth"]}
+/say Pos:  {int(nbt["PosX"])}, {int(nbt["PosY"])}, {int(nbt["PosZ"])}
+/say Mode: {nbt["GameMode"]}
+/say UUID: {nbt["UUID"]}
+
+# Iterate all fields
+for key in nbt:
+    /say {key}: {nbt[key]}
+
+# Single tag — useful for quick checks
+hp  = player_nbt_tag("Steve", "Health")
+uid = player_nbt_tag("Steve", "UUID")
+/say Health tag: {hp}
+/say UUID tag:   {uid}
+
+# Combined condition
+if player_nbt_tag("Steve", "FoodLevel") < 5 and not player_nbt_tag("Steve", "Flying"):
+    /say Steve is starving on the ground!
+    /give Steve minecraft:cooked_beef 4</code></pre>
+
+    <!-- ── World & Server ── -->
+    <h2 id="mc-world">World &amp; Server</h2>
+
+    <h3>World</h3>
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr>
+            <td><code>world_time()</code></td>
+            <td><code>int</code> (ticks)</td>
+            <td>Absolute game time since world creation. Never resets, not affected by <code>/time set</code>.</td>
+        </tr>
+        <tr>
+            <td><code>world_day_time()</code></td>
+            <td><code>int</code> (0–24000)</td>
+            <td>Position in the current day cycle. 0 = midnight, 6000 = noon, 13000 = sunset, 18000 = midnight again.</td>
+        </tr>
+        <tr>
+            <td><code>world_day()</code></td>
+            <td><code>int</code></td>
+            <td>Current in-game day number (increments every 24000 ticks).</td>
+        </tr>
+        <tr>
+            <td><code>world_weather()</code></td>
+            <td><code>str</code></td>
+            <td><code>"clear"</code>, <code>"rain"</code>, or <code>"thunder"</code>.</td>
+        </tr>
+        <tr>
+            <td><code>world_difficulty()</code></td>
+            <td><code>str</code></td>
+            <td><code>"peaceful"</code>, <code>"easy"</code>, <code>"normal"</code>, or <code>"hard"</code>.</td>
+        </tr>
+        <tr>
+            <td><code>world_spawn()</code></td>
+            <td><code>[x, y, z]</code></td>
+            <td>World spawn point coordinates.</td>
+        </tr>
+    </table>
+
+    <h3>Server</h3>
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr>
+            <td><code>server_max_players()</code></td>
+            <td><code>int</code></td>
+            <td>Max players allowed, as set in <code>server.properties</code>.</td>
+        </tr>
+        <tr>
+            <td><code>server_tps()</code></td>
+            <td><code>float</code></td>
+            <td>Estimated ticks per second. 20.0 = perfect. Lower values indicate lag.</td>
+        </tr>
+        <tr>
+            <td><code>server_mspt()</code></td>
+            <td><code>float</code></td>
+            <td>Average milliseconds per tick. &lt;50 ms is healthy.</td>
+        </tr>
+    </table>
+
+    <pre><code class="language-python">daytime = world_day_time()
+weather = world_weather()
+tps     = server_tps()
+
+# Announce sunrise
+if daytime > 23900 or daytime < 100:
+    /say Good morning! Day {world_day()} begins.
+
+# React to thunder
+if weather == "thunder":
+    /say A storm is raging!
+    /weather clear 6000
+
+# Server lag warning
+if tps < 15:
+    /say §c[Warning] Server lag detected! TPS: {tps}
+
+# Server status board
+online   = player_count()
+max_p    = server_max_players()
+spawn    = world_spawn()
+diff     = world_difficulty()
+/say §6=== SERVER STATUS ===
+/say Players: {online}/{max_p}  TPS: {tps}  MSPT: {server_mspt()}
+/say Difficulty: {diff}  Day: {world_day()}  Weather: {weather}
+/say Spawn: {int(spawn[0])}, {int(spawn[1])}, {int(spawn[2])}</code></pre>
+
+    <!-- ── Blocks ── -->
+    <h2 id="mc-blocks">Block Data</h2>
+
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr>
+            <td><code>block_at(x, y, z)</code></td>
+            <td><code>str</code></td>
+            <td>Block ID at the given coordinates in the overworld. E.g. <code>"minecraft:stone"</code>.</td>
+        </tr>
+        <tr>
+            <td><code>block_at(x, y, z, dimension)</code></td>
+            <td><code>str</code></td>
+            <td>Block ID in a specific dimension. Dimension: <code>"overworld"</code>, <code>"the_nether"</code>, <code>"the_end"</code>.</td>
+        </tr>
+        <tr>
+            <td><code>block_is_air(x, y, z)</code></td>
+            <td><code>bool</code></td>
+            <td>Returns <code>True</code> if the block is air (overworld only). Useful for spawn safety checks.</td>
+        </tr>
+        <tr>
+            <td><code>block_light(x, y, z)</code></td>
+            <td><code>int</code> (0–15)</td>
+            <td>Light emission level of the block at these coordinates (overworld). Note: this is block light, not sky light.</td>
+        </tr>
+    </table>
+
+    <pre><code class="language-python"># What's under Steve's feet?
+px = int(player_x("Steve"))
+py = int(player_y("Steve"))
+pz = int(player_z("Steve"))
+
+under = block_at(px, py - 1, pz)
+/say Steve is standing on: {under}
+
+# Block above head
+above = block_at(px, py + 1, pz)
+if above != "minecraft:air":
+    /say Something is above Steve's head: {above}
+
+# Nether check
+nether_floor = block_at(0, 1, 0, "the_nether")
+/say Nether floor at 0,1,0: {nether_floor}
+
+# Safe spawn check
+is_safe = block_is_air(0, 65, 0) and block_is_air(0, 66, 0)
+if is_safe:
+    /say Spawn is clear!
+else:
+    /say Spawn is blocked — clearing...
+    /setblock 0 65 0 air
+    /setblock 0 66 0 air
+
+# Light level check
+light = block_light(px, py, pz)
+if light < 8:
+    /say §eDark area! Mob spawning possible. Light: {light}/15</code></pre>
+
+    <!-- ── Data Examples ── -->
+    <h2 id="mc-examples">Data — Full Examples</h2>
+
+    <h3>Health Monitor (runs every 5 seconds)</h3>
+    <pre><code class="language-python">@PREPARE
+# Monitors all online players and alerts if HP is critical
+
+while True:
+    players = player_list()
+    for p in players:
+        hp    = player_health(p)
+        maxhp = player_max_health(p)
+        pct   = hp * 100 / maxhp
+
+        if pct <= 25:
+            /title {p} times 5 40 5
+            /title {p} subtitle {"text":"❤ LOW HP!","color":"red","bold":true}
+            /title {p} title {"text":" "}
+            /tell {p} §cWarning: your HP is at {int(pct)}%!
+    wait(100)   # check every 5 seconds</code></pre>
+
+    <h3>Anti-Fly Detector</h3>
+    <pre><code class="language-python">@PREPARE
+# Detects non-OP players flying in survival mode
+
+while True:
+    for p in player_list():
+        gm     = player_gamemode(p)
+        flying = player_flying(p)
+        is_op  = player_is_op(p)
+
+        if gm == "survival" and flying and not is_op:
+            /say §c[AntiCheat] {p} is flying in survival!
+            /gamemode survival {p}
+            /tell {p} §cFlying is not allowed in survival mode.
+    wait(40)   # check every 2 seconds</code></pre>
+
+    <h3>Welcome Board on Join</h3>
+    <pre><code class="language-python">def greet_player(player):
+    hp    = player_health(player)
+    lvl   = player_level(player)
+    dim   = player_dimension(player)
+    pos   = player_pos(player)
+    count = player_count()
+    maxp  = server_max_players()
+    day   = world_day()
+    tps   = server_tps()
+
+    /tellraw {player} {"text":"","extra":[{"text":"=== Welcome back, ","color":"gold"},{"text":"{player}","color":"yellow","bold":true},{"text":" ===","color":"gold"}]}
+    /tell {player} §eHP: §f{hp}/{player_max_health(player)}  §eLevel: §f{lvl}
+    /tell {player} §ePosition: §f{int(pos[0])}, {int(pos[1])}, {int(pos[2])}  §eDim: §f{dim}
+    /tell {player} §ePlayers online: §f{count}/{maxp}  §eDay: §f{day}  §eTPS: §f{tps}</code></pre>
+
+    <h3>Inventory Scanner</h3>
+    <pre><code class="language-python"># Scan all players for contraband items
+BANNED = ["tnt", "end_crystal", "bedrock"]
+
+for p in player_list():
+    inv = player_inventory(p)
+    for item in inv:
+        for banned in BANNED:
+            if banned in item["id"]:
+                /say §c[Security] {p} has {item["id"]} in slot {item["slot"]}!
+                /clear {p} {item["id"]}
+                /tell {p} §cIllegal item confiscated: {item["id"]}</code></pre>
+
+    <h3>Dynamic Difficulty Scaling</h3>
+    <pre><code class="language-python">@PREPARE
+# Scale difficulty based on server population
+
+while True:
+    count = player_count()
+    tps   = server_tps()
+
+    if count == 0:
+        /difficulty peaceful
+    elif count <= 5 or tps < 15:
+        /difficulty easy
+    elif count <= 15:
+        /difficulty normal
+    else:
+        /difficulty hard
+
+    wait(1200)   # check every minute</code></pre>
 
     <footer>
         <p>Advanced Scripts Mod — Language Reference | Minecraft Forge 1.20.1</p>
