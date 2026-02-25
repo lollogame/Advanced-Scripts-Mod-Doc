@@ -329,6 +329,15 @@
             <li><a href="#mc-blocks">↳ Blocks</a></li>
             <li><a href="#mc-examples">↳ Data Examples</a></li>
         </ul>
+        <ul>
+            <li><a href="#entity-data">🐾 Entity Data</a></li>
+            <li><a href="#entity-selectors">↳ Selectors</a></li>
+            <li><a href="#entity-count">↳ Count &amp; List</a></li>
+            <li><a href="#entity-getters">↳ Single Getters</a></li>
+            <li><a href="#entity-flags">↳ State Flags</a></li>
+            <li><a href="#entity-nbt">↳ NBT Fields</a></li>
+            <li><a href="#entity-examples">↳ Entity Examples</a></li>
+        </ul>
     </div>
 
     <div class="section-divider"></div>
@@ -1603,6 +1612,334 @@ while True:
         /difficulty hard
 
     wait(1200)   # check every minute</code></pre>
+
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════ ENTITY DATA FUNCTIONS ═══════════════════ -->
+    <h2 id="entity-data">🐾 Entity Data Functions</h2>
+    <p>Query live entity data using standard Minecraft entity selector strings. All calls are thread-safe and return immediately with the latest server-side data.</p>
+
+    <div class="note">
+        <strong>💡 Input:</strong> Every entity function accepts a standard Minecraft selector string as its first argument — the same syntax you use in commands like <code>/kill</code> or <code>/tp</code>. The selector is resolved against the same source position used by the script executor.
+    </div>
+
+    <!-- ── Selectors ── -->
+    <h2 id="entity-selectors">Selector Syntax</h2>
+    <p>Selectors follow the standard Minecraft format. Any arguments valid in vanilla commands work here.</p>
+
+    <table>
+        <tr><th>Selector</th><th>Matches</th></tr>
+        <tr><td><code>"@e"</code></td><td>All loaded entities in all dimensions</td></tr>
+        <tr><td><code>"@a"</code></td><td>All online players</td></tr>
+        <tr><td><code>"@s"</code></td><td>The script executor (if triggered by a player)</td></tr>
+        <tr><td><code>"@e[type=zombie]"</code></td><td>All zombies</td></tr>
+        <tr><td><code>"@e[type=!player]"</code></td><td>All non-player entities</td></tr>
+        <tr><td><code>"@e[type=zombie,limit=1,sort=nearest]"</code></td><td>Nearest zombie only</td></tr>
+        <tr><td><code>"@e[distance=..20]"</code></td><td>Entities within 20 blocks of the executor</td></tr>
+        <tr><td><code>"@e[distance=5..30]"</code></td><td>Entities between 5 and 30 blocks away</td></tr>
+        <tr><td><code>"@e[tag=boss]"</code></td><td>Entities with the scoreboard tag <code>boss</code></td></tr>
+        <tr><td><code>"@e[tag=!boss]"</code></td><td>Entities <em>without</em> the tag <code>boss</code></td></tr>
+        <tr><td><code>"@e[name=KingZombie]"</code></td><td>Entity with custom name</td></tr>
+        <tr><td><code>"@e[type=zombie,sort=nearest,limit=5]"</code></td><td>5 nearest zombies</td></tr>
+        <tr><td><code>"@e[x=0,y=64,z=0,dx=10,dy=5,dz=10]"</code></td><td>Entities in an AABB region</td></tr>
+        <tr><td><code>"@e[nbt={OnFire:1b}]"</code></td><td>Entities currently on fire (via NBT predicate)</td></tr>
+    </table>
+
+    <div class="warn">
+        <strong>⚠️ sort= options:</strong> <code>sort=nearest</code> and <code>sort=furthest</code> use the executor's position. For server-level scripts (<code>@PREPARE</code>) with no executor, the reference point is world origin <code>0, 0, 0</code>.
+    </div>
+
+    <!-- ── Count & List ── -->
+    <h2 id="entity-count">Count &amp; List</h2>
+
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr>
+            <td><code>entity_count(selector)</code></td>
+            <td><code>int</code></td>
+            <td>Number of entities matching the selector.</td>
+        </tr>
+        <tr>
+            <td><code>entity_list(selector)</code></td>
+            <td><code>list</code> of <code>dict</code></td>
+            <td>One NBT dict per matching entity (same fields as <code>entity_nbt</code>). Useful for iterating over multiple matches.</td>
+        </tr>
+        <tr>
+            <td><code>entity_nbt_all(selector)</code></td>
+            <td><code>list</code> of <code>dict</code></td>
+            <td>Alias for <code>entity_list</code>.</td>
+        </tr>
+    </table>
+
+    <pre><code class="language-python">/say Total entities: {entity_count("@e")}
+/say Zombies nearby: {entity_count("@e[type=zombie,distance=..30]")}
+
+# Iterate over all skeletons
+for e in entity_list("@e[type=skeleton]"):
+    /say Skeleton at {int(e["PosX"])},{int(e["PosY"])},{int(e["PosZ"])} HP={e["Health"]}
+
+# Count and act
+count = entity_count("@e[type=creeper]")
+if count > 10:
+    /say §cToo many creepers! Clearing...
+    /kill @e[type=creeper]</code></pre>
+
+    <!-- ── Single Getters ── -->
+    <h2 id="entity-getters">Single-Entity Getters</h2>
+    <p>These functions return data for the <strong>first entity</strong> matched by the selector. Use <code>sort=nearest</code> or <code>limit=1</code> to control which entity is "first".</p>
+
+    <h3>Identity</h3>
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr><td><code>entity_type(selector)</code></td><td><code>str</code></td><td>Type resource key, e.g. <code>"minecraft:zombie"</code>, <code>"minecraft:player"</code>. Returns <code>"none"</code> if no match.</td></tr>
+        <tr><td><code>entity_name(selector)</code></td><td><code>str</code></td><td>Custom name if set, otherwise the default display name (e.g. <code>"Zombie"</code>, <code>"Steve"</code>).</td></tr>
+        <tr><td><code>entity_uuid(selector)</code></td><td><code>str</code></td><td>UUID string of the first match.</td></tr>
+    </table>
+
+    <h3>Position &amp; Rotation</h3>
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr><td><code>entity_pos(selector)</code></td><td><code>[x, y, z]</code></td><td>Position as a list — convenient for destructuring.</td></tr>
+        <tr><td><code>entity_x(selector)</code></td><td><code>float</code></td><td>X coordinate.</td></tr>
+        <tr><td><code>entity_y(selector)</code></td><td><code>float</code></td><td>Y coordinate.</td></tr>
+        <tr><td><code>entity_z(selector)</code></td><td><code>float</code></td><td>Z coordinate.</td></tr>
+        <tr><td><code>entity_yaw(selector)</code></td><td><code>float</code></td><td>Horizontal rotation (degrees). 0 = south, 90 = west.</td></tr>
+        <tr><td><code>entity_pitch(selector)</code></td><td><code>float</code></td><td>Vertical rotation (degrees). −90 = up, 90 = down.</td></tr>
+        <tr><td><code>entity_dimension(selector)</code></td><td><code>str</code></td><td>Dimension path: <code>"overworld"</code>, <code>"the_nether"</code>, <code>"the_end"</code>.</td></tr>
+    </table>
+
+    <h3>Health (LivingEntity only)</h3>
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr><td><code>entity_health(selector)</code></td><td><code>float</code></td><td>Current health. Returns <code>0</code> if entity is not a <code>LivingEntity</code> (e.g. item frames, falling blocks).</td></tr>
+        <tr><td><code>entity_max_health(selector)</code></td><td><code>float</code></td><td>Maximum health.</td></tr>
+    </table>
+
+    <h3>Velocity</h3>
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr><td><code>entity_velocity(selector)</code></td><td><code>[vx, vy, vz]</code></td><td>Delta movement vector (blocks/tick). Useful for detecting if a mob is moving or falling.</td></tr>
+    </table>
+
+    <h3>Scoreboard Tags</h3>
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr><td><code>entity_tags(selector)</code></td><td><code>list</code> of <code>str</code></td><td>All scoreboard tags on the first matching entity.</td></tr>
+        <tr><td><code>entity_has_tag(selector, tag)</code></td><td><code>bool</code></td><td>True if the first match has the given scoreboard tag.</td></tr>
+    </table>
+
+    <pre><code class="language-python">sel = "@e[type=zombie,sort=nearest,limit=1]"
+
+if entity_count(sel) > 0:
+    etype = entity_type(sel)
+    ename = entity_name(sel)
+    pos   = entity_pos(sel)
+    hp    = entity_health(sel)
+    maxhp = entity_max_health(sel)
+    vel   = entity_velocity(sel)
+    tags  = entity_tags(sel)
+
+    /say Nearest zombie: {ename}
+    /say  Type: {etype}
+    /say  Pos:  {int(pos[0])}, {int(pos[1])}, {int(pos[2])}
+    /say  HP:   {hp}/{maxhp} ({int(hp*100/maxhp)}%)
+    /say  Vel:  {vel[0]:.2f}, {vel[1]:.2f}, {vel[2]:.2f}
+    /say  Tags: {tags}
+
+    if entity_has_tag(sel, "boss"):
+        /say This zombie is a BOSS!</code></pre>
+
+    <!-- ── State Flags ── -->
+    <h2 id="entity-flags">State Flags</h2>
+
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>True when…</th></tr>
+        <tr><td><code>entity_alive(selector)</code></td><td><code>bool</code></td><td>Entity is alive (not dead/removed).</td></tr>
+        <tr><td><code>entity_on_fire(selector)</code></td><td><code>bool</code></td><td>Entity is currently burning.</td></tr>
+        <tr><td><code>entity_on_ground(selector)</code></td><td><code>bool</code></td><td>Entity is standing on a solid surface.</td></tr>
+        <tr><td><code>entity_in_water(selector)</code></td><td><code>bool</code></td><td>Entity is submerged in water.</td></tr>
+        <tr><td><code>entity_silent(selector)</code></td><td><code>bool</code></td><td>Entity makes no sounds.</td></tr>
+        <tr><td><code>entity_no_gravity(selector)</code></td><td><code>bool</code></td><td>Entity is not affected by gravity.</td></tr>
+        <tr><td><code>entity_is_baby(selector)</code></td><td><code>bool</code></td><td>Entity is a baby variant (LivingEntity only).</td></tr>
+    </table>
+
+    <pre><code class="language-python">for e in entity_list("@e[type=!player]"):
+    sel_uuid = "@e[nbt={UUID:" + e["UUID"] + "}]"
+
+    if entity_on_fire(sel_uuid):
+        /say {e["Name"]} is burning!
+
+    if entity_is_baby(sel_uuid):
+        /say {e["Name"]} is a baby!</code></pre>
+
+    <!-- ── NBT ── -->
+    <h2 id="entity-nbt">NBT Fields</h2>
+    <p>These functions return structured dicts equivalent to <code>/data get entity &lt;selector&gt;</code> output, as native script values.</p>
+
+    <table>
+        <tr><th>Function</th><th>Returns</th><th>Description</th></tr>
+        <tr>
+            <td><code>entity_nbt(selector)</code></td>
+            <td><code>dict</code></td>
+            <td>Full data snapshot of the first matching entity.</td>
+        </tr>
+        <tr>
+            <td><code>entity_nbt_all(selector)</code></td>
+            <td><code>list</code> of <code>dict</code></td>
+            <td>Data snapshot for every matching entity.</td>
+        </tr>
+        <tr>
+            <td><code>entity_nbt_tag(selector, key)</code></td>
+            <td><code>any</code></td>
+            <td>Single field by key from the first match. Returns <code>None</code> if no match or key absent.</td>
+        </tr>
+    </table>
+
+    <h3>NBT Dict Keys</h3>
+    <table>
+        <tr><th>Key</th><th>Type</th><th>Present on</th><th>Description</th></tr>
+        <tr><td><code>Type</code></td><td><code>str</code></td><td>All</td><td>Resource key e.g. <code>"minecraft:zombie"</code></td></tr>
+        <tr><td><code>Name</code></td><td><code>str</code></td><td>All</td><td>Custom name or default display name</td></tr>
+        <tr><td><code>UUID</code></td><td><code>str</code></td><td>All</td><td>UUID string</td></tr>
+        <tr><td><code>PosX</code> / <code>PosY</code> / <code>PosZ</code></td><td><code>float</code></td><td>All</td><td>World coordinates</td></tr>
+        <tr><td><code>Yaw</code> / <code>Pitch</code></td><td><code>float</code></td><td>All</td><td>Rotation angles</td></tr>
+        <tr><td><code>Dimension</code></td><td><code>str</code></td><td>All</td><td>Current dimension</td></tr>
+        <tr><td><code>Alive</code></td><td><code>bool</code></td><td>All</td><td>Not dead or removed</td></tr>
+        <tr><td><code>OnFire</code></td><td><code>bool</code></td><td>All</td><td>Currently burning</td></tr>
+        <tr><td><code>OnGround</code></td><td><code>bool</code></td><td>All</td><td>Standing on ground</td></tr>
+        <tr><td><code>InWater</code></td><td><code>bool</code></td><td>All</td><td>Submerged in water</td></tr>
+        <tr><td><code>Silent</code></td><td><code>bool</code></td><td>All</td><td>No sounds</td></tr>
+        <tr><td><code>NoGravity</code></td><td><code>bool</code></td><td>All</td><td>Ignores gravity</td></tr>
+        <tr><td><code>VelX</code> / <code>VelY</code> / <code>VelZ</code></td><td><code>float</code></td><td>All</td><td>Velocity per tick</td></tr>
+        <tr><td><code>Tags</code></td><td><code>list</code></td><td>All</td><td>Scoreboard tags</td></tr>
+        <tr><td><code>Health</code></td><td><code>float</code></td><td>LivingEntity</td><td>Current health</td></tr>
+        <tr><td><code>MaxHealth</code></td><td><code>float</code></td><td>LivingEntity</td><td>Max health</td></tr>
+        <tr><td><code>IsBaby</code></td><td><code>bool</code></td><td>LivingEntity</td><td>Baby variant</td></tr>
+        <tr><td><code>ArmorValue</code></td><td><code>int</code></td><td>LivingEntity</td><td>Total armor points</td></tr>
+        <tr><td><code>ItemId</code></td><td><code>str</code></td><td>Item entity</td><td>Item resource id e.g. <code>"minecraft:diamond"</code></td></tr>
+        <tr><td><code>ItemCount</code></td><td><code>int</code></td><td>Item entity</td><td>Stack size</td></tr>
+    </table>
+
+    <pre><code class="language-python"># Full snapshot
+nbt = entity_nbt("@e[type=zombie,sort=nearest,limit=1]")
+/say Type:   {nbt["Type"]}
+/say HP:     {nbt["Health"]}/{nbt["MaxHealth"]}
+/say Pos:    {int(nbt["PosX"])},{int(nbt["PosY"])},{int(nbt["PosZ"])}
+/say OnFire: {nbt["OnFire"]}
+/say Tags:   {nbt["Tags"]}
+
+# Single tag
+hp = entity_nbt_tag("@e[type=zombie,sort=nearest,limit=1]", "Health")
+/say Nearest zombie HP: {hp}
+
+# Iterate all skeletons
+for e in entity_nbt_all("@e[type=skeleton]"):
+    /say Skeleton {e["UUID"][:8]} HP={e["Health"]} fire={e["OnFire"]}</code></pre>
+
+    <!-- ── Entity Examples ── -->
+    <h2 id="entity-examples">Entity Data — Full Examples</h2>
+
+    <h3>Boss Health Bar</h3>
+    <pre><code class="language-python">@PREPARE
+# Continuously shows the boss HP to all players
+
+while True:
+    count = entity_count("@e[tag=boss]")
+
+    if count > 0:
+        hp    = entity_health("@e[tag=boss,sort=nearest,limit=1]")
+        maxhp = entity_max_health("@e[tag=boss,sort=nearest,limit=1]")
+        name  = entity_name("@e[tag=boss,sort=nearest,limit=1]")
+        pct   = int(hp * 100 / maxhp)
+
+        /title @a times 2 30 2
+        /title @a subtitle {"text":"{name}  {hp}/{maxhp} HP  ({pct}%)","color":"red"}
+        /title @a title {"text":" "}
+
+        if hp <= 0:
+            /say §6§lBOSS DEFEATED!
+            /tag @e[tag=boss] remove boss
+
+    wait(10)</code></pre>
+
+    <h3>Mob Cleaner</h3>
+    <pre><code class="language-python">@PREPARE
+# Removes excess mobs to keep the server performant
+
+LIMITS = {"zombie": 20, "skeleton": 15, "creeper": 10, "spider": 15}
+
+while True:
+    for mob_type in LIMITS:
+        limit = LIMITS[mob_type]
+        sel   = "@e[type={mob_type}]"
+        count = entity_count(sel)
+
+        if count > limit:
+            excess = count - limit
+            /kill @e[type={mob_type},limit={excess},sort=furthest]
+            /say §7[Cleaner] Removed {excess} {mob_type}s (was {count}, limit {limit})
+
+    wait(1200)  # every minute</code></pre>
+
+    <h3>Item Collector Scanner</h3>
+    <pre><code class="language-python"># Find all dropped items on the ground and log them
+items = entity_nbt_all("@e[type=item]")
+
+if len(items) == 0:
+    /say No items on the ground.
+else:
+    /say §eDropped items on the ground: {len(items)}
+    for item in items:
+        x = int(item["PosX"])
+        y = int(item["PosY"])
+        z = int(item["PosZ"])
+        /say  §f{item["ItemId"]} x{item["ItemCount"]} §7at {x},{y},{z}</code></pre>
+
+    <h3>Entity Radar</h3>
+    <pre><code class="language-python">from math import distance_3d
+
+def radar(player, radius):
+    px = player_x(player)
+    py = player_y(player)
+    pz = player_z(player)
+
+    nearby = entity_list("@e[type=!player]")
+    found  = 0
+
+    for e in nearby:
+        dist = distance_3d(px, py, pz, e["PosX"], e["PosY"], e["PosZ"])
+        if dist <= radius:
+            found += 1
+            /tell {player} §7{e["Name"]} §f({int(dist)}m away)
+
+    /tell {player} §e{found} entities within {radius} blocks.
+
+radar("Steve", 30)</code></pre>
+
+    <h3>Fire Extinguisher</h3>
+    <pre><code class="language-python">@PREPARE
+# Extinguish any player who catches fire
+
+while True:
+    for p in player_list():
+        sel = "@a[name={p}]"
+        if entity_on_fire(sel):
+            /effect give {p} minecraft:fire_resistance 5 1 true
+            /tell {p} §b[System] You were extinguished!
+
+    wait(20)  # check every second</code></pre>
+
+    <h3>Mob Stat Board</h3>
+    <pre><code class="language-python">mob_types = ["zombie", "skeleton", "creeper", "spider", "enderman", "witch"]
+
+/say §6§l══════ MOB CENSUS ══════
+for mtype in mob_types:
+    count = entity_count("@e[type={mtype}]")
+    if count > 0:
+        hp_sample = entity_health("@e[type={mtype},sort=nearest,limit=1]")
+        /say §e{mtype}: §f{count} §7(nearest HP: {hp_sample})
+/say §6§l═══════════════════════</code></pre>
 
     <footer>
         <p>Advanced Scripts Mod — Language Reference | Minecraft Forge 1.20.1</p>
