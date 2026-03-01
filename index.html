@@ -407,7 +407,7 @@ msg  <span class="op">=</span> f<span class="s">"Player {name} has {hp} HP ({hp 
     <p>The script engine includes a lightweight JSON-based key-value store. Each <strong>table</strong> is a separate file saved at <code>scripts/data/&lt;table&gt;.json</code>. No SQL, no setup — just read and write values by key.</p>
 
     <div class="callout info">
-      <strong>Persistence:</strong> Data survives server restarts. Files are created automatically on first write. Supported value types: <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>None</code>.
+      <strong>Persistence:</strong> Data survives server restarts. Files are created automatically on first write. Supported value types: <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>dict</code>, <code>list</code>, <code>None</code>.
     </div>
 
     <div class="table-wrap"><table>
@@ -715,3 +715,4 @@ idx <span class="op">=</span> <span class="n">0</span>
 </script>
 </body>
 </html>
+
