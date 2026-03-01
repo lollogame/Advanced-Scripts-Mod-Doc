@@ -30,8 +30,6 @@
     display: flex;
     min-height: 100vh;
   }
-
-  /* Sidebar */
   nav {
     width: 260px;
     min-width: 260px;
@@ -52,238 +50,64 @@
     border-bottom: 1px solid var(--border);
     margin-bottom: 1rem;
   }
-  .nav-logo {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--accent);
-    letter-spacing: -0.5px;
-    line-height: 1.2;
-  }
-  .nav-version {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    margin-top: 0.3rem;
-  }
-  .nav-group-label {
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 0.85rem 1.5rem 0.35rem;
-  }
-  nav a {
-    display: block;
-    padding: 0.32rem 1.5rem;
-    color: #94a3b8;
-    text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 400;
-    transition: color 0.15s, background 0.15s;
-    border-left: 2px solid transparent;
-  }
-  nav a:hover, nav a.active {
-    color: var(--accent);
-    background: rgba(74,222,128,0.06);
-    border-left-color: var(--accent);
-  }
-
-  /* Main */
-  main {
-    flex: 1;
-    max-width: 900px;
-    padding: 3rem 3.5rem;
-    overflow-x: hidden;
-  }
-
-  /* Hero */
-  .hero {
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 2.5rem;
-    margin-bottom: 3rem;
-    position: relative;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -3rem; left: -3.5rem; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at 30% 0%, rgba(74,222,128,0.07) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .hero-tag {
-    display: inline-block;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    background: rgba(74,222,128,0.1);
-    border: 1px solid rgba(74,222,128,0.25);
-    border-radius: 4px;
-    padding: 0.2rem 0.6rem;
-    margin-bottom: 1rem;
-    letter-spacing: 0.06em;
-  }
-  .hero h1 {
-    font-size: 2.6rem;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -1.5px;
-    color: var(--text);
-    margin-bottom: 0.8rem;
-  }
+  .nav-logo { font-size: 1.1rem; font-weight: 800; color: var(--accent); letter-spacing: -0.5px; line-height: 1.2; }
+  .nav-version { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-top: 0.3rem; }
+  .nav-group-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 0.85rem 1.5rem 0.35rem; }
+  nav a { display: block; padding: 0.32rem 1.5rem; color: #94a3b8; text-decoration: none; font-size: 0.82rem; font-weight: 400; transition: color 0.15s, background 0.15s; border-left: 2px solid transparent; }
+  nav a:hover, nav a.active { color: var(--accent); background: rgba(74,222,128,0.06); border-left-color: var(--accent); }
+  main { flex: 1; max-width: 900px; padding: 3rem 3.5rem; overflow-x: hidden; }
+  .hero { border-bottom: 1px solid var(--border); padding-bottom: 2.5rem; margin-bottom: 3rem; position: relative; }
+  .hero::before { content: ''; position: absolute; top: -3rem; left: -3.5rem; right: 0; bottom: 0; background: radial-gradient(ellipse at 30% 0%, rgba(74,222,128,0.07) 0%, transparent 60%); pointer-events: none; }
+  .hero-tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent); background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.25); border-radius: 4px; padding: 0.2rem 0.6rem; margin-bottom: 1rem; letter-spacing: 0.06em; }
+  .hero h1 { font-size: 2.6rem; font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; color: var(--text); margin-bottom: 0.8rem; }
   .hero h1 span { color: var(--accent); }
-  .hero p {
-    color: #94a3b8;
-    font-size: 0.95rem;
-    max-width: 580px;
-    font-weight: 400;
-  }
-
-  /* Sections */
-  section {
-    margin-bottom: 4rem;
-    scroll-margin-top: 2rem;
-  }
-  h2 {
-    font-size: 1.35rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: var(--text);
-    margin-bottom: 1.25rem;
-    padding-bottom: 0.6rem;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  h2 .h2-icon {
-    font-size: 1rem;
-    opacity: 0.6;
-  }
-  h3 {
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: var(--accent2);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin: 1.8rem 0 0.8rem;
-  }
-
-  /* Code */
-  pre {
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.25rem 1.5rem;
-    overflow-x: auto;
-    margin: 0.75rem 0 1.25rem;
-    position: relative;
-  }
-  pre code {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    line-height: 1.75;
-    color: #cbd5e1;
-  }
-  code {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 0.1em 0.45em;
-    color: var(--accent);
-  }
+  .hero p { color: #94a3b8; font-size: 0.95rem; max-width: 580px; font-weight: 400; }
+  section { margin-bottom: 4rem; scroll-margin-top: 2rem; }
+  h2 { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text); margin-bottom: 1.25rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.6rem; }
+  h2 .h2-icon { font-size: 1rem; opacity: 0.6; }
+  h3 { font-size: 0.92rem; font-weight: 700; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.08em; margin: 1.8rem 0 0.8rem; }
+  pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 0.75rem 0 1.25rem; position: relative; }
+  pre code { font-family: 'DM Mono', monospace; font-size: 0.8rem; line-height: 1.75; color: #cbd5e1; }
+  code { font-family: 'DM Mono', monospace; font-size: 0.78rem; background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 4px; padding: 0.1em 0.45em; color: var(--accent); }
   pre code { background: none; border: none; padding: 0; font-size: 0.8rem; }
-
-  /* Syntax highlighting tokens */
-  .k  { color: #c084fc; }   /* keyword */
-  .fn { color: #38bdf8; }   /* function */
-  .s  { color: #86efac; }   /* string */
-  .c  { color: #475569; font-style: italic; } /* comment */
-  .n  { color: #f59e0b; }   /* number */
-  .a  { color: #fb923c; }   /* annotation */
-  .op { color: #94a3b8; }   /* operator */
-
-  /* Tables */
+  .k  { color: #c084fc; }
+  .fn { color: #38bdf8; }
+  .s  { color: #86efac; }
+  .c  { color: #475569; font-style: italic; }
+  .n  { color: #f59e0b; }
+  .a  { color: #fb923c; }
+  .op { color: #94a3b8; }
   .table-wrap { overflow-x: auto; margin: 0.75rem 0 1.5rem; border-radius: 8px; border: 1px solid var(--border); }
   table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
   thead { background: var(--surface2); }
-  th {
-    text-align: left;
-    padding: 0.65rem 1rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    border-bottom: 1px solid var(--border);
-  }
-  td {
-    padding: 0.6rem 1rem;
-    border-bottom: 1px solid rgba(37,41,50,0.6);
-    vertical-align: top;
-    color: #cbd5e1;
-  }
+  th { text-align: left; padding: 0.65rem 1rem; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); border-bottom: 1px solid var(--border); }
+  td { padding: 0.6rem 1rem; border-bottom: 1px solid rgba(37,41,50,0.6); vertical-align: top; color: #cbd5e1; }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: rgba(255,255,255,0.02); }
   td:first-child code { color: var(--accent2); font-size: 0.77rem; }
-
-  /* Callout boxes */
-  .callout {
-    border-left: 3px solid;
-    border-radius: 0 8px 8px 0;
-    padding: 0.85rem 1.1rem;
-    margin: 1rem 0;
-    font-size: 0.84rem;
-  }
+  .callout { border-left: 3px solid; border-radius: 0 8px 8px 0; padding: 0.85rem 1.1rem; margin: 1rem 0; font-size: 0.84rem; }
   .callout.info    { border-color: var(--accent2); background: rgba(56,189,248,0.07); }
   .callout.warning { border-color: var(--accent3); background: rgba(245,158,11,0.07); }
   .callout strong  { font-weight: 700; }
-
-  /* Tag chips */
-  .chip {
-    display: inline-block;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    padding: 0.15rem 0.55rem;
-    border-radius: 4px;
-    font-weight: 500;
-    margin-right: 0.3rem;
-    vertical-align: middle;
-  }
+  .chip { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.68rem; padding: 0.15rem 0.55rem; border-radius: 4px; font-weight: 500; margin-right: 0.3rem; vertical-align: middle; }
   .chip-green  { background: rgba(74,222,128,0.1); color: var(--accent); border: 1px solid rgba(74,222,128,0.25); }
   .chip-blue   { background: rgba(56,189,248,0.1); color: var(--accent2); border: 1px solid rgba(56,189,248,0.25); }
   .chip-yellow { background: rgba(245,158,11,0.1); color: var(--accent3); border: 1px solid rgba(245,158,11,0.25); }
   .chip-purple { background: rgba(192,132,252,0.1); color: var(--accent4); border: 1px solid rgba(192,132,252,0.25); }
-
-  /* Two-col grid */
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.75rem 0 1.25rem; }
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem 1.1rem;
-  }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.1rem; }
   .card h4 { font-size: 0.8rem; font-weight: 700; color: var(--accent4); margin-bottom: 0.5rem; }
   .card p  { font-size: 0.8rem; color: #94a3b8; line-height: 1.5; }
-
-  @media (max-width: 960px) {
-    main { padding: 2rem 1.5rem; }
-    .grid2 { grid-template-columns: 1fr; }
-    nav { display: none; }
-  }
-  @media (max-width: 1100px) {
-    main { padding: 2.5rem 2rem; }
-  }
+  @media (max-width: 960px) { main { padding: 2rem 1.5rem; } .grid2 { grid-template-columns: 1fr; } nav { display: none; } }
+  @media (max-width: 1100px) { main { padding: 2.5rem 2rem; } }
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-header">
-    <div class="nav-logo">⚙ Scripts</div>
-    <div class="nav-version">Forge 1.20.1 · v47.4.16</div>
+    <div class="nav-logo">&#9881; Scripts</div>
+    <div class="nav-version">Forge 1.20.1 &middot; v47.4.16</div>
   </div>
 
   <div class="nav-group-label">Getting Started</div>
@@ -307,6 +131,9 @@
   <a href="#builtins-dict">Dict Methods</a>
   <a href="#builtins-str">String Methods</a>
 
+  <div class="nav-group-label">Database</div>
+  <a href="#database">DB Functions</a>
+
   <div class="nav-group-label">Minecraft API</div>
   <a href="#mc-commands">Server Commands</a>
   <a href="#mc-player">Player</a>
@@ -324,126 +151,77 @@
 
 <main>
 
-  <!-- HERO -->
   <div class="hero">
-    <div class="hero-tag">Documentation · python-like scripting</div>
+    <div class="hero-tag">Documentation &middot; python-like scripting</div>
     <h1>Advanced<span>Scripts</span>Mod</h1>
     <p>A full Python-like scripting language embedded directly into your Minecraft Forge 1.20.1. Write scripts with variables, loops, functions, imports, and deep access to live server data</p>
   </div>
 
-  <!-- OVERVIEW -->
   <section id="overview">
-    <h2><span class="h2-icon">📄</span>Overview</h2>
+    <h2><span class="h2-icon">&#128196;</span>Overview</h2>
     <p>Scripts are plain-text <code>.script</code> files placed inside the <code>scripts/</code> folder at the root of your server directory. Each script runs on its own background thread, so blocking calls like <code>wait()</code> never stall the server. Subdirectories are supported and are used for import paths.</p>
-
     <div class="grid2" style="margin-top:1.25rem;">
-      <div class="card">
-        <h4>Script Folder</h4>
-        <p><code>server/scripts/</code><br>
-        Subfolders map to import paths. e.g. <code>utils/math.script</code> → <code>import utils.math</code></p>
-      </div>
-      <div class="card">
-        <h4>Threading Model</h4>
-        <p>Every script runs in its own daemon thread. Commands and queries are dispatched to the server thread via a <code>CountDownLatch</code>, keeping both threads safe.</p>
-      </div>
+      <div class="card"><h4>Script Folder</h4><p><code>server/scripts/</code><br>Subfolders map to import paths. e.g. <code>utils/math.script</code> &rarr; <code>import utils.math</code></p></div>
+      <div class="card"><h4>Threading Model</h4><p>Every script runs in its own daemon thread. Commands and queries are dispatched to the server thread via a <code>CountDownLatch</code>, keeping both threads safe.</p></div>
     </div>
   </section>
 
-  <!-- ANNOTATIONS -->
   <section id="annotations">
-    <h2><span class="h2-icon">🏷</span>Annotations</h2>
+    <h2><span class="h2-icon">&#127991;</span>Annotations</h2>
     <p>Annotations must appear as the <strong>very first non-blank, non-comment line</strong> of the file.</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Annotation</th><th>Behavior</th></tr></thead>
-        <tbody>
-          <tr><td><code>@PREPARE</code></td><td>Auto-executed at server start and on <code>/scripts reload</code>. Ideal for loading shared state, registering macros, or running setup logic.</td></tr>
-          <tr><td><code>@LIBRARY</code></td><td>When imported, only <code>def</code> definitions and top-level variable assignments are exported. Commands and <code>print()</code> calls are skipped. This is the default if any annotation is absent.</td></tr>
-          <tr><td><code>@RUN</code></td><td>When imported, the entire top-level code runs (including commands). Overrides the <code>@LIBRARY</code> default.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
+    <div class="table-wrap"><table>
+      <thead><tr><th>Annotation</th><th>Behavior</th></tr></thead>
+      <tbody>
+        <tr><td><code>@PREPARE</code></td><td>Auto-executed at server start and on <code>/scripts reload</code>.</td></tr>
+        <tr><td><code>@LIBRARY</code></td><td>When imported, only <code>def</code> definitions and top-level variable assignments are exported. Commands and <code>print()</code> calls are skipped.</td></tr>
+        <tr><td><code>@RUN</code></td><td>When imported, the entire top-level code runs. Overrides the <code>@LIBRARY</code> default.</td></tr>
+      </tbody>
+    </table></div>
     <pre><code><span class="a">@PREPARE</span>
 <span class="c"># This script runs automatically at server start</span>
 <span class="fn">print</span>(<span class="s">"Server ready!"</span>)
 global_var <span class="op">=</span> <span class="n">42</span></code></pre>
-
-    <div class="callout info">
-      <strong>Note:</strong> A file with no annotation at all behaves like <code>@LIBRARY</code> — definitions are exported, top-level code is skipped on import.
-    </div>
+    <div class="callout info"><strong>Note:</strong> A file with no annotation behaves like <code>@LIBRARY</code>.</div>
   </section>
 
-  <!-- TYPES -->
   <section id="types">
-    <h2><span class="h2-icon">🔣</span>Types &amp; Variables</h2>
-    <p>ScriptEngine is dynamically typed. Variable assignment uses <code>=</code>. All standard Python literals are supported.</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Type</th><th>Literal Example</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td><code>int</code></td><td><code>42</code>, <code>-7</code></td><td>Stored as Java <code>Integer</code> or <code>Long</code></td></tr>
-          <tr><td><code>float</code></td><td><code>3.14</code>, <code>-0.5</code></td><td>Stored as Java <code>Double</code></td></tr>
-          <tr><td><code>str</code></td><td><code>"hello"</code>, <code>'world'</code>, triple-quoted</td><td>Escape sequences <code>\n \t \r \\ \" \'</code></td></tr>
-          <tr><td><code>bool</code></td><td><code>True</code>, <code>False</code></td><td>Case-sensitive</td></tr>
-          <tr><td><code>None</code></td><td><code>None</code></td><td>Null value, prints as <code>None</code></td></tr>
-          <tr><td><code>list</code></td><td><code>[1, "a", True]</code></td><td>Mixed types, mutable, 0-indexed, negative indexing</td></tr>
-          <tr><td><code>dict</code></td><td><code>{"key": value}</code></td><td>String keys only</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Assignment &amp; Compound Assignment</h3>
+    <h2><span class="h2-icon">&#128291;</span>Types &amp; Variables</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Type</th><th>Literal Example</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><code>int</code></td><td><code>42</code>, <code>-7</code></td><td>Java <code>Integer</code> or <code>Long</code></td></tr>
+        <tr><td><code>float</code></td><td><code>3.14</code></td><td>Java <code>Double</code></td></tr>
+        <tr><td><code>str</code></td><td><code>"hello"</code>, triple-quoted</td><td>Escape sequences <code>\n \t \r \\ \" \'</code></td></tr>
+        <tr><td><code>bool</code></td><td><code>True</code>, <code>False</code></td><td>Case-sensitive</td></tr>
+        <tr><td><code>None</code></td><td><code>None</code></td><td>Null value</td></tr>
+        <tr><td><code>list</code></td><td><code>[1, "a", True]</code></td><td>Mixed types, mutable, 0-indexed, negative indexing</td></tr>
+        <tr><td><code>dict</code></td><td><code>{"key": value}</code></td><td>String keys only</td></tr>
+      </tbody>
+    </table></div>
     <pre><code>x <span class="op">=</span> <span class="n">10</span>
-x <span class="op">+=</span> <span class="n">5</span>      <span class="c"># x = 15</span>
-x <span class="op">-=</span> <span class="n">2</span>
-x <span class="op">*=</span> <span class="n">3</span>
-x <span class="op">/=</span> <span class="n">2</span>
-x <span class="op">%=</span> <span class="n">4</span>
-
-<span class="c"># Subscript assignment</span>
+x <span class="op">+=</span> <span class="n">5</span>
 items <span class="op">=</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]
 items[<span class="n">0</span>] <span class="op">=</span> <span class="n">99</span>
-
 data <span class="op">=</span> {<span class="s">"hp"</span>: <span class="n">20</span>}
 data[<span class="s">"hp"</span>] <span class="op">=</span> <span class="n">18</span></code></pre>
-
-    <h3>Triple-Quoted Strings</h3>
-    <pre><code>msg <span class="op">=</span> <span class="s">"""This spans
-multiple lines"""</span></code></pre>
   </section>
 
-  <!-- OPERATORS -->
   <section id="operators">
-    <h2><span class="h2-icon">➕</span>Operators</h2>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Category</th><th>Operators</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td>Arithmetic</td><td><code>+  -  *  /  //  %  **</code></td><td><code>//</code> floor div, <code>**</code> power. <code>+</code> concatenates lists and strings.</td></tr>
-          <tr><td>Comparison</td><td><code>==  !=  &lt;  &gt;  &lt;=  &gt;=</code></td><td>Number comparison uses double precision</td></tr>
-          <tr><td>Logical</td><td><code>and  or  not</code></td><td>Short-circuit evaluation</td></tr>
-          <tr><td>Membership</td><td><code>in  not in</code></td><td>Works on list, dict (by key), and str</td></tr>
-          <tr><td>Unary</td><td><code>-  +</code></td><td>Negate or no-op</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Operator Precedence (lowest → highest)</h3>
-    <pre><code><span class="c"># or → and → not → comparisons → +/- → *// → unary → ** → primary</span>
-result <span class="op">=</span> <span class="n">2</span> <span class="op">**</span> <span class="n">3</span> <span class="op">+</span> <span class="n">1</span>     <span class="c"># 9</span>
-ok <span class="op">=</span> <span class="n">5</span> <span class="op">&gt;</span> <span class="n">3</span> <span class="k">and</span> <span class="k">not</span> <span class="k">False</span>  <span class="c"># True</span>
-<span class="s">"a"</span> <span class="k">in</span> [<span class="s">"a"</span>, <span class="s">"b"</span>]             <span class="c"># True</span></code></pre>
+    <h2><span class="h2-icon">&#10133;</span>Operators</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Category</th><th>Operators</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Arithmetic</td><td><code>+  -  *  /  //  %  **</code></td><td><code>//</code> floor div, <code>**</code> power. <code>+</code> concatenates lists and strings.</td></tr>
+        <tr><td>Comparison</td><td><code>==  !=  &lt;  &gt;  &lt;=  &gt;=</code></td><td>Double precision</td></tr>
+        <tr><td>Logical</td><td><code>and  or  not</code></td><td>Short-circuit evaluation</td></tr>
+        <tr><td>Membership</td><td><code>in  not in</code></td><td>list, dict (by key), str</td></tr>
+        <tr><td>Unary</td><td><code>-  +</code></td><td></td></tr>
+      </tbody>
+    </table></div>
   </section>
 
-  <!-- CONTROL FLOW -->
   <section id="control">
-    <h2><span class="h2-icon">🔀</span>Control Flow</h2>
-    <p>Blocks are delimited by <strong>indentation</strong> (spaces or tabs), exactly like Python. Colons end header lines.</p>
-
+    <h2><span class="h2-icon">&#128256;</span>Control Flow</h2>
     <h3>if / elif / else</h3>
     <pre><code><span class="k">if</span> hp <span class="op">&lt;</span> <span class="n">5</span>:
     <span class="fn">print</span>(<span class="s">"critical!"</span>)
@@ -451,648 +229,450 @@ ok <span class="op">=</span> <span class="n">5</span> <span class="op">&gt;</spa
     <span class="fn">print</span>(<span class="s">"low health"</span>)
 <span class="k">else</span>:
     <span class="fn">print</span>(<span class="s">"fine"</span>)</code></pre>
-
-    <h3>for — iterate over list, dict keys, string chars, range</h3>
+    <h3>for</h3>
     <pre><code><span class="k">for</span> i <span class="k">in</span> <span class="fn">range</span>(<span class="n">5</span>):
     <span class="fn">print</span>(i)
-
-<span class="k">for</span> name <span class="k">in</span> <span class="fn">player_list</span>():
-    <span class="fn">print</span>(name)
-
-<span class="c"># Tuple unpacking</span>
-pairs <span class="op">=</span> [[<span class="s">"Alice"</span>, <span class="n">10</span>], [<span class="s">"Bob"</span>, <span class="n">5</span>]]
-<span class="k">for</span> name, score <span class="k">in</span> pairs:
+<span class="k">for</span> name, score <span class="k">in</span> [[<span class="s">"Alice"</span>, <span class="n">10</span>], [<span class="s">"Bob"</span>, <span class="n">5</span>]]:
     <span class="fn">print</span>(name, score)</code></pre>
-
-    <h3>while</h3>
+    <h3>while / break / continue / pass</h3>
     <pre><code>count <span class="op">=</span> <span class="n">0</span>
 <span class="k">while</span> count <span class="op">&lt;</span> <span class="n">3</span>:
     count <span class="op">+=</span> <span class="n">1</span>
     <span class="fn">wait</span>(<span class="n">20</span>)</code></pre>
-
-    <h3>break &amp; continue &amp; pass</h3>
-    <pre><code><span class="k">for</span> x <span class="k">in</span> <span class="fn">range</span>(<span class="n">10</span>):
-    <span class="k">if</span> x <span class="op">==</span> <span class="n">5</span>:
-        <span class="k">break</span>
-    <span class="k">if</span> x <span class="op">%</span> <span class="n">2</span> <span class="op">==</span> <span class="n">0</span>:
-        <span class="k">continue</span>
-    <span class="fn">print</span>(x)
-
-<span class="k">if</span> <span class="k">True</span>:
-    <span class="k">pass</span>   <span class="c"># no-op placeholder</span></code></pre>
   </section>
 
-  <!-- FUNCTIONS -->
   <section id="functions">
-    <h2><span class="h2-icon">📦</span>Functions</h2>
-    <p>Functions are declared with <code>def</code>. They run in their own scope with closure support. Functions defined at the top-level are available throughout the script and to imported modules that call back into the caller.</p>
-
-    <h3>Declaration &amp; Default Parameters</h3>
+    <h2><span class="h2-icon">&#128230;</span>Functions</h2>
     <pre><code><span class="k">def</span> <span class="fn">greet</span>(player, msg<span class="op">=</span><span class="s">"Welcome!"</span>):
     /say {player}: {msg}
 
-<span class="fn">greet</span>(<span class="s">"Steve"</span>)
-<span class="fn">greet</span>(<span class="s">"Alex"</span>, <span class="s">"Hello!"</span>)</code></pre>
-
-    <h3>Return Values</h3>
-    <pre><code><span class="k">def</span> <span class="fn">add</span>(a, b):
+<span class="k">def</span> <span class="fn">add</span>(a, b):
     <span class="k">return</span> a <span class="op">+</span> b
 
 result <span class="op">=</span> <span class="fn">add</span>(<span class="n">3</span>, <span class="n">4</span>)   <span class="c"># 7</span></code></pre>
-
-    <h3>Nested Functions &amp; Closures</h3>
-    <pre><code><span class="k">def</span> <span class="fn">make_counter</span>(start):
-    count <span class="op">=</span> start
-    <span class="k">def</span> <span class="fn">inc</span>():
-        <span class="k">return</span> count <span class="op">+</span> <span class="n">1</span>
-    <span class="k">return</span> <span class="fn">inc</span>()</code></pre>
-
-    <div class="callout info">
-      <strong>First-pass scan:</strong> All <code>def</code> statements are registered before any code executes, so you can call a function defined later in the file.
-    </div>
+    <div class="callout info"><strong>First-pass scan:</strong> All <code>def</code> statements are registered before any code executes.</div>
   </section>
 
-  <!-- MACROS -->
   <section id="macros">
-    <h2><span class="h2-icon">🪄</span>Macros (<code>@macro</code>)</h2>
-    <p>A macro decorated with <code>@macro</code> runs <strong>inside the caller's scope</strong> instead of its own scope. Variables assigned inside a macro are set directly on the caller.</p>
-
+    <h2><span class="h2-icon">&#129668;</span>Macros (<code>@macro</code>)</h2>
+    <p>A macro runs inside the <strong>caller's scope</strong>. Variables assigned inside a macro are set directly on the caller.</p>
     <pre><code><span class="a">@macro</span>
 <span class="k">def</span> <span class="fn">GIVE_DIAMOND</span>(player):
     /give {player} minecraft:diamond <span class="n">64</span>
-    gave_diamond <span class="op">=</span> <span class="k">True</span>   <span class="c"># written to caller scope</span>
+    gave_diamond <span class="op">=</span> <span class="k">True</span>
 
 <span class="fn">GIVE_DIAMOND</span>(<span class="s">"Steve"</span>)
-<span class="fn">print</span>(gave_diamond)   <span class="c"># True — set by the macro</span></code></pre>
-
-    <div class="callout warning">
-      <strong>Difference from regular functions:</strong> A regular function always gets its own fresh scope. A macro shares the caller's variables, making it behave more like an inlined block of code.
-    </div>
+<span class="fn">print</span>(gave_diamond)   <span class="c"># True</span></code></pre>
   </section>
 
-  <!-- IMPORTS -->
   <section id="imports">
-    <h2><span class="h2-icon">📥</span>Import System</h2>
-    <p>Dot-separated module paths map to directory separators under the <code>scripts/</code> folder. Modules are <strong>cached</strong> after the first load so they are not re-parsed on subsequent imports.</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Syntax</th><th>Result</th></tr></thead>
-        <tbody>
-          <tr><td><code>import utils</code></td><td>Binds module to name <code>utils</code>. Call via <code>utils.greet()</code></td></tr>
-          <tr><td><code>import utils as u</code></td><td>Binds to alias <code>u</code>. Call via <code>u.greet()</code></td></tr>
-          <tr><td><code>import path.to.lib</code></td><td>Loads <code>scripts/path/to/lib.script</code>, binds as <code>lib</code></td></tr>
-          <tr><td><code>from utils import *</code></td><td>Injects all functions and variables directly into current scope</td></tr>
-          <tr><td><code>from utils import greet</code></td><td>Injects only <code>greet</code> into current scope</td></tr>
-          <tr><td><code>from utils import greet, MAX</code></td><td>Multiple names</td></tr>
-          <tr><td><code>from utils import greet as hi, MAX as LIMIT</code></td><td>With per-name aliases</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <pre><code><span class="c"># utils.script (annotated @LIBRARY by default)</span>
-<span class="k">def</span> <span class="fn">welcome</span>(p):
-    /say Welcome, {p}!
-MAX_LEVEL <span class="op">=</span> <span class="n">100</span>
-
-<span class="c">---</span>
-
-<span class="c"># main.script</span>
-<span class="k">import</span> utils <span class="k">as</span> u
-u.<span class="fn">welcome</span>(<span class="s">"Steve"</span>)
-<span class="fn">print</span>(u.MAX_LEVEL)
-
-<span class="k">from</span> utils <span class="k">import</span> welcome, MAX_LEVEL <span class="k">as</span> CAP
-<span class="fn">welcome</span>(<span class="s">"Alex"</span>)
-<span class="fn">print</span>(CAP)</code></pre>
+    <h2><span class="h2-icon">&#128229;</span>Import System</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Syntax</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td><code>import utils</code></td><td>Bind module to <code>utils</code>. Call via <code>utils.greet()</code></td></tr>
+        <tr><td><code>import utils as u</code></td><td>Alias as <code>u</code></td></tr>
+        <tr><td><code>import path.to.lib</code></td><td>Loads <code>scripts/path/to/lib.script</code></td></tr>
+        <tr><td><code>from utils import *</code></td><td>Inject all into current scope</td></tr>
+        <tr><td><code>from utils import greet as hi, MAX as LIMIT</code></td><td>Named aliases</td></tr>
+      </tbody>
+    </table></div>
   </section>
 
-  <!-- PREPROCESSOR -->
   <section id="preprocessor">
-    <h2><span class="h2-icon">🔧</span>Preprocessor (<code>#define</code>)</h2>
-    <p>Text-substitution macros are resolved before parsing. They support word-boundary replacement and optional quotes (stripped automatically).</p>
-
+    <h2><span class="h2-icon">&#128295;</span>Preprocessor (<code>#define</code>)</h2>
     <pre><code><span class="a">#define MAX_HP 20</span>
 <span class="a">#define SPAWN_MSG "Spawning entity now"</span>
-<span class="a">#define BASE_CMD "summon zombie"</span>
-
 hp <span class="op">=</span> MAX_HP        <span class="c"># becomes: hp = 20</span>
-<span class="fn">print</span>(SPAWN_MSG)   <span class="c"># becomes: print("Spawning entity now")</span>
-/<span class="fn">say</span> BASE_CMD       <span class="c"># becomes: /say summon zombie</span></code></pre>
-
-    <div class="callout info">
-      <strong>Line continuation:</strong> End any line with <code>\</code> to join it with the next line before parsing.
-    </div>
+<span class="fn">print</span>(SPAWN_MSG)</code></pre>
   </section>
 
-  <!-- F-STRINGS -->
   <section id="fstrings">
-    <h2><span class="h2-icon">💬</span>F-Strings</h2>
-    <p>Prefix a string literal with <code>f</code> to enable expression interpolation inside <code>{}</code>. Full expressions are evaluated, not just variable names. Use <code>{{</code> and <code>}}</code> for literal braces.</p>
-
+    <h2><span class="h2-icon">&#128172;</span>F-Strings</h2>
     <pre><code>name <span class="op">=</span> <span class="s">"Steve"</span>
 hp   <span class="op">=</span> <span class="n">18</span>
 msg  <span class="op">=</span> f<span class="s">"Player {name} has {hp} HP ({hp / 20 * 100}%)"</span>
-<span class="fn">print</span>(msg)
-
-<span class="c"># Commands interpolate f-string style automatically</span>
-/<span class="fn">say</span> Hello, {name}!     <span class="c"># name is evaluated from current scope</span>
-/<span class="fn">give</span> {name} minecraft:apple {hp <span class="op">*</span> <span class="n">2</span>}</code></pre>
-
-    <div class="callout info">
-      <strong>Commands:</strong> Every server command line (starting with <code>/</code>) is interpolated using the same f-string engine — any <code>{expr}</code> in the command is evaluated.
-    </div>
+/say Hello, {name}!
+/give {name} minecraft:apple {hp <span class="op">*</span> <span class="n">2</span>}</code></pre>
   </section>
 
-  <!-- SCOPE -->
   <section id="scope">
-    <h2><span class="h2-icon">🌐</span>Scope &amp; <code>global</code></h2>
-    <p>Variables follow lexical scoping. Each function call creates a child scope that can read from its parent chain but writes locally unless a variable already exists in a parent scope (in which case the write propagates up). Use <code>global</code> to explicitly bind to the root (global) scope.</p>
-
+    <h2><span class="h2-icon">&#127760;</span>Scope &amp; <code>global</code></h2>
     <pre><code>counter <span class="op">=</span> <span class="n">0</span>
-
 <span class="k">def</span> <span class="fn">increment</span>():
     <span class="k">global</span> counter
     counter <span class="op">+=</span> <span class="n">1</span>
-
 <span class="fn">increment</span>()
 <span class="fn">print</span>(counter)   <span class="c"># 1</span></code></pre>
-
-    <div class="callout warning">
-      <strong>Without <code>global</code>:</strong> If <code>counter</code> exists in an enclosing scope, assignment propagates to it. If it does not exist anywhere in the parent chain, a new local variable is created.
-    </div>
   </section>
 
-  <!-- BUILTINS GENERAL -->
   <section id="builtins-general">
-    <h2><span class="h2-icon">🔩</span>Built-in Functions</h2>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Signature</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>print</code></td><td><code>print(*args)</code></td><td>Logs to server console with <code>[Script]</code> prefix</td></tr>
-          <tr><td><code>wait</code></td><td><code>wait(ticks)</code></td><td>Pauses script. 20 ticks = 1 second. Interruptible.</td></tr>
-          <tr><td><code>len</code></td><td><code>len(obj)</code></td><td><code>int</code> — length of list, dict, or string</td></tr>
-          <tr><td><code>str</code></td><td><code>str(val)</code></td><td>Convert to string</td></tr>
-          <tr><td><code>int</code></td><td><code>int(val)</code></td><td>Convert to integer (truncates float)</td></tr>
-          <tr><td><code>float</code></td><td><code>float(val)</code></td><td>Convert to float</td></tr>
-          <tr><td><code>bool</code></td><td><code>bool(val)</code></td><td>Truthiness as boolean</td></tr>
-          <tr><td><code>abs</code></td><td><code>abs(n)</code></td><td>Absolute value</td></tr>
-          <tr><td><code>min</code></td><td><code>min(*args)</code> or <code>min(list)</code></td><td>Minimum numeric value</td></tr>
-          <tr><td><code>max</code></td><td><code>max(*args)</code> or <code>max(list)</code></td><td>Maximum numeric value</td></tr>
-          <tr><td><code>round</code></td><td><code>round(n, digits=0)</code></td><td>Rounded number</td></tr>
-          <tr><td><code>sum</code></td><td><code>sum(list)</code></td><td>Sum of all numeric items</td></tr>
-          <tr><td><code>range</code></td><td><code>range(stop)</code> / <code>range(start, stop, step)</code></td><td><code>list</code> of integers</td></tr>
-          <tr><td><code>list</code></td><td><code>list()</code> / <code>list(iterable)</code></td><td>New list (copies existing or wraps string chars)</td></tr>
-          <tr><td><code>dict</code></td><td><code>dict()</code></td><td>New empty dict</td></tr>
-          <tr><td><code>type</code></td><td><code>type(val)</code></td><td><code>str</code>: <code>"int"</code>, <code>"float"</code>, <code>"bool"</code>, <code>"str"</code>, <code>"list"</code>, <code>"dict"</code>, <code>"module"</code></td></tr>
-          <tr><td><code>sorted</code></td><td><code>sorted(list)</code></td><td>New sorted list (ascending, numeric)</td></tr>
-          <tr><td><code>reversed</code></td><td><code>reversed(list)</code></td><td>New reversed list</td></tr>
-          <tr><td><code>enumerate</code></td><td><code>enumerate(list, start=0)</code></td><td>List of <code>[index, item]</code> pairs</td></tr>
-          <tr><td><code>zip</code></td><td><code>zip(list1, list2)</code></td><td>List of <code>[a, b]</code> pairs, shortest length</td></tr>
-          <tr><td><code>hasattr</code></td><td><code>hasattr(module, name)</code></td><td><code>bool</code> — module has member</td></tr>
-          <tr><td><code>getattr</code></td><td><code>getattr(module, name, default)</code></td><td>Get module member or default</td></tr>
-          <tr><td><code>input</code></td><td><code>input()</code></td><td>Always returns <code>""</code> (server context)</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Truthiness Rules</h3>
-    <pre><code><span class="c"># Falsy: None, False, 0, 0.0, "", [], {}</span>
-<span class="c"># Truthy: everything else</span>
-<span class="k">if</span> []:
-    <span class="fn">print</span>(<span class="s">"never"</span>)
-<span class="k">if</span> <span class="s">"hello"</span>:
-    <span class="fn">print</span>(<span class="s">"truthy"</span>)</code></pre>
+    <h2><span class="h2-icon">&#128297;</span>Built-in Functions</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>Signature</th><th>Returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>print</code></td><td><code>print(*args)</code></td><td>Logs to server console with <code>[Script]</code> prefix</td></tr>
+        <tr><td><code>wait</code></td><td><code>wait(ticks)</code></td><td>Pauses script. 20 ticks = 1 second. Interruptible.</td></tr>
+        <tr><td><code>len</code></td><td><code>len(obj)</code></td><td><code>int</code></td></tr>
+        <tr><td><code>str</code></td><td><code>str(val)</code></td><td>Convert to string</td></tr>
+        <tr><td><code>int</code></td><td><code>int(val)</code></td><td>Convert to integer</td></tr>
+        <tr><td><code>float</code></td><td><code>float(val)</code></td><td>Convert to float</td></tr>
+        <tr><td><code>bool</code></td><td><code>bool(val)</code></td><td>Truthiness as boolean</td></tr>
+        <tr><td><code>abs</code></td><td><code>abs(n)</code></td><td>Absolute value</td></tr>
+        <tr><td><code>min</code></td><td><code>min(*args)</code> or <code>min(list)</code></td><td>Minimum</td></tr>
+        <tr><td><code>max</code></td><td><code>max(*args)</code> or <code>max(list)</code></td><td>Maximum</td></tr>
+        <tr><td><code>round</code></td><td><code>round(n, digits=0)</code></td><td>Rounded number</td></tr>
+        <tr><td><code>sum</code></td><td><code>sum(list)</code></td><td>Sum of all numeric items</td></tr>
+        <tr><td><code>range</code></td><td><code>range(stop)</code> / <code>range(start, stop, step)</code></td><td><code>list</code> of integers</td></tr>
+        <tr><td><code>list</code></td><td><code>list(iterable?)</code></td><td>New list</td></tr>
+        <tr><td><code>dict</code></td><td><code>dict()</code></td><td>New empty dict</td></tr>
+        <tr><td><code>type</code></td><td><code>type(val)</code></td><td><code>"int"</code>, <code>"float"</code>, <code>"bool"</code>, <code>"str"</code>, <code>"list"</code>, <code>"dict"</code>, <code>"module"</code></td></tr>
+        <tr><td><code>sorted</code></td><td><code>sorted(list)</code></td><td>New sorted list</td></tr>
+        <tr><td><code>reversed</code></td><td><code>reversed(list)</code></td><td>New reversed list</td></tr>
+        <tr><td><code>enumerate</code></td><td><code>enumerate(list, start=0)</code></td><td>List of <code>[index, item]</code></td></tr>
+        <tr><td><code>zip</code></td><td><code>zip(list1, list2)</code></td><td>List of <code>[a, b]</code> pairs</td></tr>
+        <tr><td><code>hasattr</code></td><td><code>hasattr(module, name)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>getattr</code></td><td><code>getattr(module, name, default)</code></td><td>Module member or default</td></tr>
+        <tr><td><code>input</code></td><td><code>input()</code></td><td>Always <code>""</code></td></tr>
+      </tbody>
+    </table></div>
   </section>
 
-  <!-- LIST METHODS -->
   <section id="builtins-list">
-    <h2><span class="h2-icon">📋</span>List Methods</h2>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Method</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td><code>list.append(val)</code></td><td>Add item to end</td></tr>
-          <tr><td><code>list.extend(other)</code></td><td>Add all items from another list</td></tr>
-          <tr><td><code>list.insert(i, val)</code></td><td>Insert at index</td></tr>
-          <tr><td><code>list.remove(val)</code></td><td>Remove first occurrence</td></tr>
-          <tr><td><code>list.pop(i=-1)</code></td><td>Remove and return item at index (default last)</td></tr>
-          <tr><td><code>list.clear()</code></td><td>Remove all items</td></tr>
-          <tr><td><code>list.sort()</code></td><td>In-place numeric sort (ascending)</td></tr>
-          <tr><td><code>list.reverse()</code></td><td>In-place reverse</td></tr>
-          <tr><td><code>list.copy()</code></td><td>Shallow copy</td></tr>
-          <tr><td><code>list.count(val)</code></td><td>Count occurrences of value</td></tr>
-          <tr><td><code>list.index(val)</code></td><td>Index of first occurrence, or <code>-1</code></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <pre><code>items <span class="op">=</span> [<span class="n">3</span>, <span class="n">1</span>, <span class="n">4</span>, <span class="n">1</span>, <span class="n">5</span>]
-items.<span class="fn">sort</span>()
-<span class="fn">print</span>(items)           <span class="c"># [1, 1, 3, 4, 5]</span>
-<span class="fn">print</span>(items.<span class="fn">pop</span>())    <span class="c"># 5</span>
-<span class="fn">print</span>(items.<span class="fn">count</span>(<span class="n">1</span>)) <span class="c"># 2</span>
-
-<span class="c"># Negative indexing</span>
-<span class="fn">print</span>(items[<span class="op">-</span><span class="n">1</span>])       <span class="c"># last element</span></code></pre>
+    <h2><span class="h2-icon">&#128203;</span>List Methods</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Method</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>list.append(val)</code></td><td>Add item to end</td></tr>
+        <tr><td><code>list.extend(other)</code></td><td>Add all items from another list</td></tr>
+        <tr><td><code>list.insert(i, val)</code></td><td>Insert at index</td></tr>
+        <tr><td><code>list.remove(val)</code></td><td>Remove first occurrence</td></tr>
+        <tr><td><code>list.pop(i=-1)</code></td><td>Remove and return item at index</td></tr>
+        <tr><td><code>list.clear()</code></td><td>Remove all items</td></tr>
+        <tr><td><code>list.sort()</code></td><td>In-place numeric sort</td></tr>
+        <tr><td><code>list.reverse()</code></td><td>In-place reverse</td></tr>
+        <tr><td><code>list.copy()</code></td><td>Shallow copy</td></tr>
+        <tr><td><code>list.count(val)</code></td><td>Count occurrences</td></tr>
+        <tr><td><code>list.index(val)</code></td><td>Index of first occurrence or <code>-1</code></td></tr>
+      </tbody>
+    </table></div>
   </section>
 
-  <!-- DICT METHODS -->
   <section id="builtins-dict">
-    <h2><span class="h2-icon">🗂</span>Dict Methods</h2>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Method</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td><code>dict.get(key, default)</code></td><td>Get value or default if key missing</td></tr>
-          <tr><td><code>dict.keys()</code></td><td>List of all keys</td></tr>
-          <tr><td><code>dict.values()</code></td><td>List of all values</td></tr>
-          <tr><td><code>dict.items()</code></td><td>List of <code>[key, value]</code> pairs</td></tr>
-          <tr><td><code>dict.pop(key)</code></td><td>Remove and return value</td></tr>
-          <tr><td><code>dict.update(other)</code></td><td>Merge another dict in</td></tr>
-          <tr><td><code>dict.clear()</code></td><td>Remove all entries</td></tr>
-          <tr><td><code>dict.copy()</code></td><td>Shallow copy</td></tr>
-          <tr><td><code>dict.setdefault(key, val)</code></td><td>Set and return if key absent</td></tr>
-          <tr><td><code>dict.has_key(key)</code> / <code>dict.contains(key)</code></td><td>Boolean key existence check</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <pre><code>stats <span class="op">=</span> {<span class="s">"kills"</span>: <span class="n">5</span>, <span class="s">"deaths"</span>: <span class="n">2</span>}
-<span class="fn">print</span>(stats.<span class="fn">get</span>(<span class="s">"assists"</span>, <span class="n">0</span>))   <span class="c"># 0</span>
-<span class="k">for</span> k, v <span class="k">in</span> stats.<span class="fn">items</span>():
-    <span class="fn">print</span>(f<span class="s">"{k} = {v}"</span>)</code></pre>
+    <h2><span class="h2-icon">&#128194;</span>Dict Methods</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Method</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>dict.get(key, default)</code></td><td>Get value or default</td></tr>
+        <tr><td><code>dict.keys()</code></td><td>List of all keys</td></tr>
+        <tr><td><code>dict.values()</code></td><td>List of all values</td></tr>
+        <tr><td><code>dict.items()</code></td><td>List of <code>[key, value]</code> pairs</td></tr>
+        <tr><td><code>dict.pop(key)</code></td><td>Remove and return value</td></tr>
+        <tr><td><code>dict.update(other)</code></td><td>Merge another dict</td></tr>
+        <tr><td><code>dict.clear()</code></td><td>Remove all entries</td></tr>
+        <tr><td><code>dict.copy()</code></td><td>Shallow copy</td></tr>
+        <tr><td><code>dict.setdefault(key, val)</code></td><td>Set and return if key absent</td></tr>
+        <tr><td><code>dict.has_key(key)</code></td><td>Boolean key existence check</td></tr>
+      </tbody>
+    </table></div>
   </section>
 
-  <!-- STRING METHODS -->
   <section id="builtins-str">
-    <h2><span class="h2-icon">🔤</span>String Methods</h2>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Method</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td><code>str.upper()</code> / <code>str.lower()</code></td><td>Case conversion</td></tr>
-          <tr><td><code>str.strip()</code> / <code>str.lstrip()</code> / <code>str.rstrip()</code></td><td>Trim whitespace</td></tr>
-          <tr><td><code>str.split(sep)</code></td><td>Split on separator (whitespace if omitted). Returns list.</td></tr>
-          <tr><td><code>str.join(list)</code></td><td>Join list items with string as separator</td></tr>
-          <tr><td><code>str.replace(old, new)</code></td><td>Replace all occurrences</td></tr>
-          <tr><td><code>str.startswith(prefix)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>str.endswith(suffix)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>str.contains(sub)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>str.find(sub)</code> / <code>str.index(sub)</code></td><td>First index of substring, or <code>-1</code></td></tr>
-          <tr><td><code>str.count(sub)</code></td><td>Number of non-overlapping occurrences</td></tr>
-          <tr><td><code>str.format(*args)</code></td><td>Replace <code>{}</code> placeholders in order</td></tr>
-          <tr><td><code>str.zfill(width)</code></td><td>Zero-pad numeric string to width</td></tr>
-          <tr><td><code>str.isdigit()</code></td><td><code>bool</code> — all chars are digits</td></tr>
-          <tr><td><code>str.isalpha()</code></td><td><code>bool</code> — all chars are letters</td></tr>
-          <tr><td><code>str.isalnum()</code></td><td><code>bool</code> — all chars are letters or digits</td></tr>
-          <tr><td><code>str.len()</code> / <code>str.length</code></td><td>Length of string</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <pre><code>s <span class="op">=</span> <span class="s">"  Hello World  "</span>
-<span class="fn">print</span>(s.<span class="fn">strip</span>().<span class="fn">lower</span>())   <span class="c"># "hello world"</span>
-parts <span class="op">=</span> s.<span class="fn">split</span>()
-<span class="fn">print</span>(<span class="s">"-"</span>.<span class="fn">join</span>(parts))      <span class="c"># "Hello-World"</span>
-<span class="fn">print</span>(<span class="s">"HP: {}"</span>.<span class="fn">format</span>(<span class="n">20</span>))  <span class="c"># "HP: 20"</span></code></pre>
+    <h2><span class="h2-icon">&#128292;</span>String Methods</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Method</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>str.upper()</code> / <code>str.lower()</code></td><td>Case conversion</td></tr>
+        <tr><td><code>str.strip()</code> / <code>str.lstrip()</code> / <code>str.rstrip()</code></td><td>Trim whitespace</td></tr>
+        <tr><td><code>str.split(sep)</code></td><td>Split on separator. Returns list.</td></tr>
+        <tr><td><code>str.join(list)</code></td><td>Join list items with separator</td></tr>
+        <tr><td><code>str.replace(old, new)</code></td><td>Replace all occurrences</td></tr>
+        <tr><td><code>str.startswith(prefix)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>str.endswith(suffix)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>str.contains(sub)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>str.find(sub)</code></td><td>First index of substring, or <code>-1</code></td></tr>
+        <tr><td><code>str.count(sub)</code></td><td>Number of non-overlapping occurrences</td></tr>
+        <tr><td><code>str.format(*args)</code></td><td>Replace <code>{}</code> placeholders in order</td></tr>
+        <tr><td><code>str.zfill(width)</code></td><td>Zero-pad to width</td></tr>
+        <tr><td><code>str.isdigit()</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>str.isalpha()</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>str.isalnum()</code></td><td><code>bool</code></td></tr>
+      </tbody>
+    </table></div>
   </section>
 
-  <!-- MC COMMANDS -->
-  <section id="mc-commands">
-    <h2><span class="h2-icon">⚔</span>Server Commands</h2>
-    <p>Any line starting with <code>/</code> is executed as a server command (with permission level 4). Expressions inside <code>{}</code> are evaluated before the command runs.</p>
+  <!-- DATABASE -->
+  <section id="database">
+    <h2><span class="h2-icon">&#128451;</span>Database Functions</h2>
+    <p>The script engine includes a lightweight JSON-based key-value store. Each <strong>table</strong> is a separate file saved at <code>scripts/data/&lt;table&gt;.json</code>. No SQL, no setup — just read and write values by key.</p>
 
-    <pre><code>player <span class="op">=</span> <span class="s">"Steve"</span>
-/<span class="fn">gamemode</span> creative {player}
-/<span class="fn">give</span> {player} minecraft:diamond_sword <span class="n">1</span>
-/<span class="fn">effect</span> give {player} minecraft:speed <span class="n">30</span> <span class="n">2</span>
-/<span class="fn">tp</span> {player} <span class="n">0</span> <span class="n">64</span> <span class="n">0</span>
-/<span class="fn">say</span> {player} has been teleported!</code></pre>
+    <div class="callout info">
+      <strong>Persistence:</strong> Data survives server restarts. Files are created automatically on first write. Supported value types: <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>None</code>.
+    </div>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>Signature</th><th>Returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>db_set</code></td><td><code>db_set(table, key, value)</code></td><td><code>None</code> — write or overwrite a key</td></tr>
+        <tr><td><code>db_get</code></td><td><code>db_get(table, key, default?)</code></td><td>Stored value, or <code>default</code> (<code>None</code>) if key absent</td></tr>
+        <tr><td><code>db_exist</code></td><td><code>db_exist(table)</code></td><td><code>bool</code> — table file exists on disk</td></tr>
+        <tr><td><code>db_has</code></td><td><code>db_has(table, key)</code></td><td><code>bool</code> — key exists in table</td></tr>
+        <tr><td><code>db_keys</code></td><td><code>db_keys(table)</code></td><td><code>list[str]</code> — all keys in the table</td></tr>
+        <tr><td><code>db_all</code></td><td><code>db_all(table)</code></td><td><code>dict</code> — full table as a dict</td></tr>
+        <tr><td><code>db_delete</code></td><td><code>db_delete(table, key)</code></td><td><code>None</code> — remove a single key</td></tr>
+        <tr><td><code>db_clear</code></td><td><code>db_clear(table)</code></td><td><code>None</code> — empty the table (file kept)</td></tr>
+        <tr><td><code>db_tables</code></td><td><code>db_tables()</code></td><td><code>list[str]</code> — names of all existing tables</td></tr>
+        <tr><td><code>db_drop</code></td><td><code>db_drop(table)</code></td><td><code>bool</code> — delete the table file from disk</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Basic usage</h3>
+    <pre><code><span class="c"># Write values</span>
+<span class="fn">db_set</span>(<span class="s">"players"</span>, <span class="s">"Steve_kills"</span>, <span class="n">42</span>)
+<span class="fn">db_set</span>(<span class="s">"players"</span>, <span class="s">"Steve_coins"</span>, <span class="n">100</span>)
+
+<span class="c"># Read values (with optional default)</span>
+kills <span class="op">=</span> <span class="fn">db_get</span>(<span class="s">"players"</span>, <span class="s">"Steve_kills"</span>)          <span class="c"># 42</span>
+coins <span class="op">=</span> <span class="fn">db_get</span>(<span class="s">"players"</span>, <span class="s">"Steve_money"</span>, <span class="n">0</span>)       <span class="c"># 0  (default)</span>
+
+<span class="c"># Existence checks</span>
+<span class="fn">db_exist</span>(<span class="s">"players"</span>)                                  <span class="c"># True</span>
+<span class="fn">db_has</span>(<span class="s">"players"</span>, <span class="s">"Steve_kills"</span>)                    <span class="c"># True</span>
+
+<span class="c"># Enumerate</span>
+<span class="fn">print</span>(<span class="fn">db_keys</span>(<span class="s">"players"</span>))                            <span class="c"># ["Steve_kills", "Steve_coins"]</span>
+<span class="fn">print</span>(<span class="fn">db_all</span>(<span class="s">"players"</span>))                             <span class="c"># {"Steve_kills": 42, "Steve_coins": 100}</span>
+<span class="fn">print</span>(<span class="fn">db_tables</span>())                                    <span class="c"># ["players"]</span>
+
+<span class="c"># Cleanup</span>
+<span class="fn">db_delete</span>(<span class="s">"players"</span>, <span class="s">"Steve_kills"</span>)
+<span class="fn">db_clear</span>(<span class="s">"players"</span>)                                   <span class="c"># empties the table</span>
+<span class="fn">db_drop</span>(<span class="s">"players"</span>)                                    <span class="c"># deletes the file</span></code></pre>
+
+    <h3>Example — coin economy</h3>
+    <pre><code><span class="a">@PREPARE</span>
+<span class="k">while</span> <span class="k">True</span>:
+    <span class="k">for</span> name <span class="k">in</span> <span class="fn">player_list</span>():
+        <span class="c"># Init player on first login</span>
+        <span class="k">if</span> <span class="k">not</span> <span class="fn">db_has</span>(<span class="s">"economy"</span>, name <span class="op">+</span> <span class="s">"_coins"</span>):
+            <span class="fn">db_set</span>(<span class="s">"economy"</span>, name <span class="op">+</span> <span class="s">"_coins"</span>, <span class="n">0</span>)
+
+        <span class="c"># Award 1 coin every 5 minutes of play</span>
+        coins <span class="op">=</span> <span class="fn">db_get</span>(<span class="s">"economy"</span>, name <span class="op">+</span> <span class="s">"_coins"</span>, <span class="n">0</span>)
+        <span class="fn">db_set</span>(<span class="s">"economy"</span>, name <span class="op">+</span> <span class="s">"_coins"</span>, coins <span class="op">+</span> <span class="n">1</span>)
+        /tell {name} &sect;6+1 coin! Total: {coins + 1}
+
+    <span class="fn">wait</span>(<span class="n">6000</span>)   <span class="c"># 5 minutes</span></code></pre>
 
     <div class="callout warning">
-      <strong>Thread-safe:</strong> Commands are dispatched to the server thread and the script thread blocks until execution completes. Timeout is 10 seconds.
+      <strong>Concurrency note:</strong> Each <code>db_set</code> / <code>db_get</code> reads and writes the JSON file synchronously. If two scripts write the same table simultaneously, last write wins. Keep writes coarse-grained for high-frequency updates.
     </div>
   </section>
 
-  <!-- MC PLAYER -->
+  <section id="mc-commands">
+    <h2><span class="h2-icon">&#9876;</span>Server Commands</h2>
+    <p>Any line starting with <code>/</code> is executed as a server command (permission level 4). Expressions inside <code>{}</code> are evaluated before execution.</p>
+    <pre><code>player <span class="op">=</span> <span class="s">"Steve"</span>
+/gamemode creative {player}
+/give {player} minecraft:diamond_sword <span class="n">1</span>
+/tp {player} <span class="n">0</span> <span class="n">64</span> <span class="n">0</span></code></pre>
+    <div class="callout warning"><strong>Thread-safe:</strong> Commands are dispatched to the server thread. Timeout is 10 seconds.</div>
+  </section>
+
   <section id="mc-player">
-    <h2><span class="h2-icon">🧍</span>Player Functions</h2>
-    <p>All player functions accept a <code>name: str</code> (the player's username). They return live data from the server thread.</p>
-
+    <h2><span class="h2-icon">&#129485;</span>Player Functions</h2>
     <h3>Presence &amp; Count</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>player_online(name)</code></td><td><code>bool</code> — player is currently online</td></tr>
-          <tr><td><code>player_list()</code></td><td><code>list[str]</code> — all online player names</td></tr>
-          <tr><td><code>player_count()</code></td><td><code>int</code> — number of online players</td></tr>
-        </tbody>
-      </table>
-    </div>
-
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>Returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>player_online(name)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>player_list()</code></td><td><code>list[str]</code> — all online player names</td></tr>
+        <tr><td><code>player_count()</code></td><td><code>int</code></td></tr>
+      </tbody>
+    </table></div>
     <h3>Stats</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>player_health(name)</code></td><td><code>float</code> — current HP (0.0–max)</td></tr>
-          <tr><td><code>player_max_health(name)</code></td><td><code>float</code> — max HP</td></tr>
-          <tr><td><code>player_hunger(name)</code></td><td><code>int</code> — food level (0–20)</td></tr>
-          <tr><td><code>player_saturation(name)</code></td><td><code>float</code> — saturation level</td></tr>
-          <tr><td><code>player_level(name)</code></td><td><code>int</code> — XP level</td></tr>
-          <tr><td><code>player_xp(name)</code></td><td><code>float</code> — XP progress in current level (0.0–1.0)</td></tr>
-          <tr><td><code>player_total_xp(name)</code></td><td><code>int</code> — total XP points</td></tr>
-          <tr><td><code>player_gamemode(name)</code></td><td><code>str</code>: <code>"survival"</code>, <code>"creative"</code>, <code>"adventure"</code>, <code>"spectator"</code></td></tr>
-        </tbody>
-      </table>
-    </div>
-
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>Returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>player_health(name)</code></td><td><code>float</code></td></tr>
+        <tr><td><code>player_max_health(name)</code></td><td><code>float</code></td></tr>
+        <tr><td><code>player_hunger(name)</code></td><td><code>int</code> (0–20)</td></tr>
+        <tr><td><code>player_saturation(name)</code></td><td><code>float</code></td></tr>
+        <tr><td><code>player_level(name)</code></td><td><code>int</code></td></tr>
+        <tr><td><code>player_xp(name)</code></td><td><code>float</code> (0.0–1.0)</td></tr>
+        <tr><td><code>player_total_xp(name)</code></td><td><code>int</code></td></tr>
+        <tr><td><code>player_gamemode(name)</code></td><td><code>"survival"</code> / <code>"creative"</code> / <code>"adventure"</code> / <code>"spectator"</code></td></tr>
+      </tbody>
+    </table></div>
     <h3>Position &amp; Rotation</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>player_x(name)</code></td><td><code>float</code></td></tr>
-          <tr><td><code>player_y(name)</code></td><td><code>float</code></td></tr>
-          <tr><td><code>player_z(name)</code></td><td><code>float</code></td></tr>
-          <tr><td><code>player_pos(name)</code></td><td><code>[x, y, z]</code> as list of floats</td></tr>
-          <tr><td><code>player_yaw(name)</code></td><td><code>float</code> — horizontal rotation (0=south, 90=west)</td></tr>
-          <tr><td><code>player_pitch(name)</code></td><td><code>float</code> — vertical rotation (-90=up, 90=down)</td></tr>
-          <tr><td><code>player_dimension(name)</code></td><td><code>str</code>: <code>"overworld"</code>, <code>"the_nether"</code>, <code>"the_end"</code></td></tr>
-        </tbody>
-      </table>
-    </div>
-
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>Returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>player_x(name)</code> / <code>player_y(name)</code> / <code>player_z(name)</code></td><td><code>float</code></td></tr>
+        <tr><td><code>player_pos(name)</code></td><td><code>[x, y, z]</code></td></tr>
+        <tr><td><code>player_yaw(name)</code> / <code>player_pitch(name)</code></td><td><code>float</code></td></tr>
+        <tr><td><code>player_dimension(name)</code></td><td><code>"overworld"</code> / <code>"the_nether"</code> / <code>"the_end"</code></td></tr>
+      </tbody>
+    </table></div>
     <h3>State Flags</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>player_flying(name)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>player_sneaking(name)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>player_sprinting(name)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>player_on_ground(name)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>player_in_water(name)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>player_is_op(name)</code></td><td><code>bool</code> — has operator status</td></tr>
-        </tbody>
-      </table>
-    </div>
-
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>Returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>player_flying(name)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>player_sneaking(name)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>player_sprinting(name)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>player_on_ground(name)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>player_in_water(name)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>player_is_op(name)</code></td><td><code>bool</code></td></tr>
+      </tbody>
+    </table></div>
     <h3>Inventory</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>player_inventory(name)</code></td><td>List of dicts: <code>{"slot": int, "id": str, "count": int, "name": str}</code> — non-empty slots only</td></tr>
-          <tr><td><code>player_hand(name)</code></td><td>Dict: <code>{"id": str, "count": int, "name": str}</code> for main hand item (<code>"air"</code> if empty)</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>Returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>player_inventory(name)</code></td><td>List of <code>{"slot", "id", "count", "name"}</code> dicts</td></tr>
+        <tr><td><code>player_hand(name)</code></td><td><code>{"id", "count", "name"}</code></td></tr>
+      </tbody>
+    </table></div>
   </section>
 
-  <!-- MC WORLD -->
   <section id="mc-world">
-    <h2><span class="h2-icon">🌍</span>World Functions</h2>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>world_time()</code></td><td><code>int</code> — total game ticks (never resets)</td></tr>
-          <tr><td><code>world_day_time()</code></td><td><code>int</code> — ticks within current day cycle (0–23999)</td></tr>
-          <tr><td><code>world_day()</code></td><td><code>int</code> — current in-game day number</td></tr>
-          <tr><td><code>world_weather()</code></td><td><code>str</code>: <code>"clear"</code>, <code>"rain"</code>, <code>"thunder"</code></td></tr>
-          <tr><td><code>world_difficulty()</code></td><td><code>str</code>: <code>"peaceful"</code>, <code>"easy"</code>, <code>"normal"</code>, <code>"hard"</code></td></tr>
-          <tr><td><code>world_spawn()</code></td><td><code>[x, y, z]</code> — world spawn position</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <h2><span class="h2-icon">&#127757;</span>World Functions</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>Returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>world_time()</code></td><td><code>int</code> — total game ticks</td></tr>
+        <tr><td><code>world_day_time()</code></td><td><code>int</code> — ticks within day (0–23999)</td></tr>
+        <tr><td><code>world_day()</code></td><td><code>int</code></td></tr>
+        <tr><td><code>world_weather()</code></td><td><code>"clear"</code> / <code>"rain"</code> / <code>"thunder"</code></td></tr>
+        <tr><td><code>world_difficulty()</code></td><td><code>"peaceful"</code> / <code>"easy"</code> / <code>"normal"</code> / <code>"hard"</code></td></tr>
+        <tr><td><code>world_spawn()</code></td><td><code>[x, y, z]</code></td></tr>
+      </tbody>
+    </table></div>
   </section>
 
-  <!-- MC SERVER -->
   <section id="mc-server">
-    <h2><span class="h2-icon">🖥</span>Server Functions</h2>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>server_max_players()</code></td><td><code>int</code> — configured max player slots</td></tr>
-          <tr><td><code>server_tps()</code></td><td><code>float</code> — ticks per second (max 20.0). Derived from MSPT.</td></tr>
-          <tr><td><code>server_mspt()</code></td><td><code>float</code> — average milliseconds per tick</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <h2><span class="h2-icon">&#128421;</span>Server Functions</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>Returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>server_max_players()</code></td><td><code>int</code></td></tr>
+        <tr><td><code>server_tps()</code></td><td><code>float</code> (max 20.0)</td></tr>
+        <tr><td><code>server_mspt()</code></td><td><code>float</code></td></tr>
+      </tbody>
+    </table></div>
   </section>
 
-  <!-- MC BLOCKS -->
   <section id="mc-blocks">
-    <h2><span class="h2-icon">🧱</span>Block Functions</h2>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>block_at(x, y, z)</code></td><td><code>str</code> — block ID at coords in overworld, e.g. <code>"minecraft:stone"</code></td></tr>
-          <tr><td><code>block_at(x, y, z, dim)</code></td><td>Same, in specified dimension (<code>"overworld"</code>, <code>"the_nether"</code>, <code>"the_end"</code>)</td></tr>
-          <tr><td><code>block_is_air(x, y, z)</code></td><td><code>bool</code> — block is air (overworld only)</td></tr>
-          <tr><td><code>block_light(x, y, z)</code></td><td><code>int</code> — emitted light level 0–15 (overworld only)</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <pre><code>b <span class="op">=</span> <span class="fn">block_at</span>(<span class="n">0</span>, <span class="n">63</span>, <span class="n">0</span>)
-<span class="fn">print</span>(b)              <span class="c"># "minecraft:grass_block"</span>
-
-nether_b <span class="op">=</span> <span class="fn">block_at</span>(<span class="n">10</span>, <span class="n">60</span>, <span class="n">10</span>, <span class="s">"the_nether"</span>)
-<span class="fn">print</span>(<span class="fn">block_is_air</span>(<span class="n">0</span>, <span class="n">200</span>, <span class="n">0</span>))   <span class="c"># True</span></code></pre>
+    <h2><span class="h2-icon">&#129521;</span>Block Functions</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>Returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>block_at(x, y, z)</code></td><td><code>str</code> block ID, e.g. <code>"minecraft:stone"</code></td></tr>
+        <tr><td><code>block_at(x, y, z, dim)</code></td><td>Same in specified dimension</td></tr>
+        <tr><td><code>block_is_air(x, y, z)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>block_light(x, y, z)</code></td><td><code>int</code> 0–15</td></tr>
+      </tbody>
+    </table></div>
   </section>
 
-  <!-- MC ENTITIES -->
   <section id="mc-entities">
-    <h2><span class="h2-icon">🐉</span>Entity Functions</h2>
-    <p>All entity functions accept a standard Minecraft <strong>entity selector</strong> string: <code>"@e"</code>, <code>"@e[type=zombie]"</code>, <code>"@e[limit=1,sort=nearest]"</code>, <code>"@a"</code>, <code>"@s"</code>, etc. Distance-based selectors use the executor's position, or world origin for server-level scripts.</p>
-
-    <h3>Queries</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>entity_count(sel)</code></td><td><code>int</code> — number of matching entities</td></tr>
-          <tr><td><code>entity_list(sel)</code></td><td>List of entity dicts (see NBT Snapshots section)</td></tr>
-          <tr><td><code>entity_type(sel)</code></td><td><code>str</code> — type of first match, e.g. <code>"minecraft:zombie"</code></td></tr>
-          <tr><td><code>entity_name(sel)</code></td><td><code>str</code> — display name or custom name</td></tr>
-          <tr><td><code>entity_uuid(sel)</code></td><td><code>str</code> — UUID of first match</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Position &amp; Motion</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>entity_x(sel)</code> / <code>entity_y(sel)</code> / <code>entity_z(sel)</code></td><td><code>float</code></td></tr>
-          <tr><td><code>entity_pos(sel)</code></td><td><code>[x, y, z]</code></td></tr>
-          <tr><td><code>entity_yaw(sel)</code></td><td><code>float</code></td></tr>
-          <tr><td><code>entity_pitch(sel)</code></td><td><code>float</code></td></tr>
-          <tr><td><code>entity_dimension(sel)</code></td><td><code>str</code></td></tr>
-          <tr><td><code>entity_velocity(sel)</code></td><td><code>[vx, vy, vz]</code></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Health &amp; State</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>entity_health(sel)</code></td><td><code>float</code></td></tr>
-          <tr><td><code>entity_max_health(sel)</code></td><td><code>float</code></td></tr>
-          <tr><td><code>entity_alive(sel)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>entity_on_fire(sel)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>entity_on_ground(sel)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>entity_in_water(sel)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>entity_silent(sel)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>entity_no_gravity(sel)</code></td><td><code>bool</code></td></tr>
-          <tr><td><code>entity_is_baby(sel)</code></td><td><code>bool</code> — only LivingEntity</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Tags</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Returns</th></tr></thead>
-        <tbody>
-          <tr><td><code>entity_tags(sel)</code></td><td><code>list[str]</code> — scoreboard tags on first match</td></tr>
-          <tr><td><code>entity_has_tag(sel, tag)</code></td><td><code>bool</code></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <pre><code>cnt <span class="op">=</span> <span class="fn">entity_count</span>(<span class="s">"@e[type=zombie]"</span>)
-<span class="fn">print</span>(f<span class="s">"Zombies alive: {cnt}"</span>)
-
-<span class="k">for</span> e <span class="k">in</span> <span class="fn">entity_list</span>(<span class="s">"@e[type=cow,limit=5]"</span>):
-    <span class="fn">print</span>(e[<span class="s">"Name"</span>], e[<span class="s">"PosX"</span>], e[<span class="s">"PosZ"</span>])</code></pre>
+    <h2><span class="h2-icon">&#128009;</span>Entity Functions</h2>
+    <p>All entity functions accept a standard Minecraft <strong>entity selector</strong>: <code>"@e"</code>, <code>"@e[type=zombie]"</code>, <code>"@e[limit=1,sort=nearest]"</code>, etc.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>Returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>entity_count(sel)</code></td><td><code>int</code></td></tr>
+        <tr><td><code>entity_list(sel)</code></td><td>List of entity dicts</td></tr>
+        <tr><td><code>entity_type(sel)</code></td><td><code>str</code> e.g. <code>"minecraft:zombie"</code></td></tr>
+        <tr><td><code>entity_name(sel)</code></td><td><code>str</code></td></tr>
+        <tr><td><code>entity_uuid(sel)</code></td><td><code>str</code></td></tr>
+        <tr><td><code>entity_x/y/z(sel)</code></td><td><code>float</code></td></tr>
+        <tr><td><code>entity_pos(sel)</code></td><td><code>[x, y, z]</code></td></tr>
+        <tr><td><code>entity_yaw/pitch(sel)</code></td><td><code>float</code></td></tr>
+        <tr><td><code>entity_dimension(sel)</code></td><td><code>str</code></td></tr>
+        <tr><td><code>entity_velocity(sel)</code></td><td><code>[vx, vy, vz]</code></td></tr>
+        <tr><td><code>entity_health(sel)</code> / <code>entity_max_health(sel)</code></td><td><code>float</code></td></tr>
+        <tr><td><code>entity_alive(sel)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>entity_on_fire/on_ground/in_water/silent/no_gravity/is_baby(sel)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>entity_tags(sel)</code></td><td><code>list[str]</code></td></tr>
+        <tr><td><code>entity_has_tag(sel, tag)</code></td><td><code>bool</code></td></tr>
+        <tr><td><code>entity_nbt(sel)</code></td><td><code>dict</code></td></tr>
+        <tr><td><code>entity_nbt_all(sel)</code></td><td><code>list[dict]</code></td></tr>
+        <tr><td><code>entity_nbt_tag(sel, tag)</code></td><td>any</td></tr>
+      </tbody>
+    </table></div>
   </section>
 
-  <!-- NBT -->
   <section id="mc-nbt">
-    <h2><span class="h2-icon">🗄</span>NBT Snapshots</h2>
-    <p>The <code>player_nbt</code>, <code>entity_nbt</code>, <code>entity_list</code> functions return dicts with the following fields.</p>
-
-    <h3>player_nbt(name) — fields</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Key</th><th>Type</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td><code>Health</code></td><td>float</td><td>Current HP</td></tr>
-          <tr><td><code>MaxHealth</code></td><td>float</td><td>Max HP</td></tr>
-          <tr><td><code>FoodLevel</code></td><td>int</td><td>Hunger (0–20)</td></tr>
-          <tr><td><code>FoodSaturation</code></td><td>float</td><td>Saturation</td></tr>
-          <tr><td><code>XpLevel</code></td><td>int</td><td>XP level</td></tr>
-          <tr><td><code>XpProgress</code></td><td>float</td><td>Progress 0.0–1.0</td></tr>
-          <tr><td><code>TotalXp</code></td><td>int</td><td>Total XP</td></tr>
-          <tr><td><code>Score</code></td><td>int</td><td>Death score</td></tr>
-          <tr><td><code>GameMode</code></td><td>str</td><td></td></tr>
-          <tr><td><code>PosX</code> / <code>PosY</code> / <code>PosZ</code></td><td>float</td><td>Position</td></tr>
-          <tr><td><code>Yaw</code> / <code>Pitch</code></td><td>float</td><td>Rotation</td></tr>
-          <tr><td><code>Dimension</code></td><td>str</td><td></td></tr>
-          <tr><td><code>Flying</code> / <code>Sneaking</code> / <code>Sprinting</code></td><td>bool</td><td></td></tr>
-          <tr><td><code>OnGround</code> / <code>InWater</code></td><td>bool</td><td></td></tr>
-          <tr><td><code>IsOp</code></td><td>bool</td><td></td></tr>
-          <tr><td><code>Name</code> / <code>UUID</code></td><td>str</td><td></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>entity_nbt(sel) — additional LivingEntity fields</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Key</th><th>Type</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td><code>Type</code></td><td>str</td><td>e.g. <code>"minecraft:zombie"</code></td></tr>
-          <tr><td><code>Alive</code></td><td>bool</td><td></td></tr>
-          <tr><td><code>OnFire</code> / <code>Silent</code> / <code>NoGravity</code></td><td>bool</td><td></td></tr>
-          <tr><td><code>VelX</code> / <code>VelY</code> / <code>VelZ</code></td><td>float</td><td>Delta movement</td></tr>
-          <tr><td><code>Tags</code></td><td>list</td><td>Scoreboard tags</td></tr>
-          <tr><td><code>Health</code> / <code>MaxHealth</code></td><td>float</td><td>LivingEntity only</td></tr>
-          <tr><td><code>IsBaby</code></td><td>bool</td><td>LivingEntity only</td></tr>
-          <tr><td><code>ArmorValue</code></td><td>int</td><td>LivingEntity only</td></tr>
-          <tr><td><code>ItemId</code> / <code>ItemCount</code></td><td>str / int</td><td>ItemEntity only</td></tr>
-        </tbody>
-      </table>
-    </div>
-
+    <h2><span class="h2-icon">&#128452;</span>NBT Snapshots</h2>
+    <h3>player_nbt(name) fields</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Key</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>Health</code> / <code>MaxHealth</code></td><td>float</td><td>HP</td></tr>
+        <tr><td><code>FoodLevel</code></td><td>int</td><td>0–20</td></tr>
+        <tr><td><code>XpLevel</code> / <code>XpProgress</code> / <code>TotalXp</code></td><td>int/float/int</td><td></td></tr>
+        <tr><td><code>GameMode</code></td><td>str</td><td></td></tr>
+        <tr><td><code>PosX</code> / <code>PosY</code> / <code>PosZ</code></td><td>float</td><td>Position</td></tr>
+        <tr><td><code>Yaw</code> / <code>Pitch</code></td><td>float</td><td>Rotation</td></tr>
+        <tr><td><code>Dimension</code></td><td>str</td><td></td></tr>
+        <tr><td><code>Flying</code> / <code>Sneaking</code> / <code>Sprinting</code> / <code>OnGround</code> / <code>InWater</code> / <code>IsOp</code></td><td>bool</td><td></td></tr>
+        <tr><td><code>Name</code> / <code>UUID</code></td><td>str</td><td></td></tr>
+      </tbody>
+    </table></div>
     <pre><code>nbt <span class="op">=</span> <span class="fn">player_nbt</span>(<span class="s">"Steve"</span>)
 <span class="fn">print</span>(nbt[<span class="s">"Health"</span>], nbt[<span class="s">"XpLevel"</span>])
-
-tag <span class="op">=</span> <span class="fn">player_nbt_tag</span>(<span class="s">"Steve"</span>, <span class="s">"Dimension"</span>)
-<span class="fn">print</span>(tag)   <span class="c"># "overworld"</span>
-
-<span class="c"># Single entity field</span>
-hp <span class="op">=</span> <span class="fn">entity_nbt_tag</span>(<span class="s">"@e[type=zombie,limit=1]"</span>, <span class="s">"Health"</span>)</code></pre>
+tag <span class="op">=</span> <span class="fn">player_nbt_tag</span>(<span class="s">"Steve"</span>, <span class="s">"Dimension"</span>)</code></pre>
   </section>
 
-  <!-- THREADING -->
   <section id="threading">
-    <h2><span class="h2-icon">🧵</span>Threading &amp; Lifecycle</h2>
-    <p>Each script runs on a named daemon thread (<code>Script-filename.script</code>). The engine tracks running scripts and supports stopping them externally.</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Behavior</th><th>Details</th></tr></thead>
-        <tbody>
-          <tr><td>Thread interrupt</td><td>Calling <code>/scripts stop &lt;name&gt;</code> or <code>/scripts stopall</code> interrupts the thread. The interpreter checks the interrupt flag at every statement boundary and inside <code>wait()</code>, and raises a <code>ScriptStoppedSignal</code> that unwinds the entire call stack cleanly.</td></tr>
-          <tr><td>Timeout</td><td>Every server query and command has a 10-second timeout. If exceeded, an error is sent to the executor or logged.</td></tr>
-          <tr><td>Duplicate prevention</td><td>You cannot start a script that is already running by name. It must finish or be stopped first.</td></tr>
-          <tr><td>Daemon threads</td><td>All script threads are daemon threads — they do not prevent JVM shutdown.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <pre><code><span class="c"># /scripts reload  → clears module cache and runs all @PREPARE scripts</span>
-<span class="c"># /scripts run events/greet.script</span>
+    <h2><span class="h2-icon">&#129525;</span>Threading &amp; Lifecycle</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Behavior</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td>Thread interrupt</td><td><code>/scripts stop</code> sets the interrupt flag; the interpreter checks it at every statement boundary and inside <code>wait()</code>.</td></tr>
+        <tr><td>Timeout</td><td>Every server query and command has a 10-second timeout.</td></tr>
+        <tr><td>Duplicate prevention</td><td>Cannot start a script that is already running by name.</td></tr>
+        <tr><td>Daemon threads</td><td>Do not prevent JVM shutdown.</td></tr>
+      </tbody>
+    </table></div>
+    <pre><code><span class="c"># /scripts reload  — clears module cache and runs all @PREPARE scripts</span>
+<span class="c"># /scripts run events/greet</span>
 <span class="c"># /scripts stop events/greet</span>
 <span class="c"># /scripts stopall</span></code></pre>
   </section>
 
-  <!-- MODULE CACHE -->
   <section id="module-cache">
-    <h2><span class="h2-icon">⚡</span>Module Cache</h2>
-    <p>Imported modules are parsed once and stored in a thread-safe cache keyed by their relative path. Subsequent <code>import</code> statements in any script reuse the cached module without re-reading the file.</p>
-
-    <p>The cache is cleared when <code>/scripts reload</code> is executed, ensuring that changes to library files are picked up immediately without a server restart.</p>
-
-    <div class="callout warning">
-      <strong>Hot-reload:</strong> After editing a <code>.script</code> file that is used as a library, run <code>/scripts reload</code> to clear the cache and reload all <code>@PREPARE</code> scripts.
-    </div>
+    <h2><span class="h2-icon">&#9889;</span>Module Cache</h2>
+    <p>Imported modules are parsed once and stored in a thread-safe cache. Subsequent <code>import</code> statements reuse the cached module without re-reading the file.</p>
+    <div class="callout warning"><strong>Hot-reload:</strong> Run <code>/scripts reload</code> after editing a library file to clear the cache.</div>
   </section>
 
-  <!-- EXAMPLES -->
   <section id="examples">
-    <h2><span class="h2-icon">📚</span>Examples</h2>
+    <h2><span class="h2-icon">&#128218;</span>Examples</h2>
 
     <h3>Auto-broadcast &amp; loop</h3>
     <pre><code><span class="a">@PREPARE</span>
-messages <span class="op">=</span> [<span class="s">"Welcome to the server!"</span>, <span class="s">"Visit our Discord!"</span>, <span class="s">"Type /help for commands."</span>]
+messages <span class="op">=</span> [<span class="s">"Welcome!"</span>, <span class="s">"Visit our Discord!"</span>, <span class="s">"Type /help"</span>]
 idx <span class="op">=</span> <span class="n">0</span>
 <span class="k">while</span> <span class="k">True</span>:
     /say {messages[idx]}
     idx <span class="op">=</span> (idx <span class="op">+</span> <span class="n">1</span>) <span class="op">%</span> <span class="fn">len</span>(messages)
-    <span class="fn">wait</span>(<span class="n">1200</span>)   <span class="c"># every 60 seconds</span></code></pre>
+    <span class="fn">wait</span>(<span class="n">1200</span>)</code></pre>
 
     <h3>Low-health warning system</h3>
     <pre><code><span class="k">def</span> <span class="fn">check_players</span>():
     <span class="k">for</span> name <span class="k">in</span> <span class="fn">player_list</span>():
         hp <span class="op">=</span> <span class="fn">player_health</span>(name)
         <span class="k">if</span> hp <span class="op">&lt;</span> <span class="n">4</span>:
-            /title {name} actionbar {"§cCritical HP: " + str(int(hp)) + "❤"}
+            /title {name} actionbar {"&sect;cCritical HP: " + str(int(hp)) + "&hearts;"}
 
 <span class="k">while</span> <span class="k">True</span>:
     <span class="fn">check_players</span>()
     <span class="fn">wait</span>(<span class="n">10</span>)</code></pre>
 
-    <h3>Entity janitor (clean up excess mobs)</h3>
+    <h3>Entity janitor</h3>
     <pre><code>MAX_ZOMBIES <span class="op">=</span> <span class="n">20</span>
 <span class="k">while</span> <span class="k">True</span>:
     cnt <span class="op">=</span> <span class="fn">entity_count</span>(<span class="s">"@e[type=zombie]"</span>)
@@ -1107,27 +687,13 @@ idx <span class="op">=</span> <span class="n">0</span>
 <span class="k">def</span> <span class="fn">give_starter_kit</span>(player):
     /give {player} minecraft:iron_sword <span class="n">1</span>
     /give {player} minecraft:bread <span class="n">16</span>
-    /give {player} minecraft:torch <span class="n">32</span>
-
-<span class="c">---</span>
 
 <span class="c"># welcome.script</span>
 <span class="k">from</span> lib.rewards <span class="k">import</span> give_starter_kit
-
 <span class="k">for</span> name <span class="k">in</span> <span class="fn">player_list</span>():
-    <span class="fn">give_starter_kit</span>(name)
-    /tell {name} Your starter kit has been delivered!</code></pre>
+    <span class="fn">give_starter_kit</span>(name)</code></pre>
 
-    <h3>enumerate &amp; zip</h3>
-    <pre><code>players <span class="op">=</span> <span class="fn">player_list</span>()
-scores  <span class="op">=</span> [<span class="fn">player_level</span>(p) <span class="k">for</span> p <span class="k">in</span> players]  <span class="c"># NOTE: list comprehensions not supported; use loop</span>
-
-<span class="k">for</span> i, name <span class="k">in</span> <span class="fn">enumerate</span>(players):
-    <span class="fn">print</span>(f<span class="s">"{i}: {name}"</span>)</code></pre>
-
-    <div class="callout warning">
-      <strong>Note:</strong> List comprehensions (<code>[x for x in y]</code>) are not supported. Use a <code>for</code> loop and <code>list.append()</code> instead.
-    </div>
+    <div class="callout warning"><strong>Note:</strong> List comprehensions are not supported. Use a <code>for</code> loop and <code>list.append()</code> instead.</div>
   </section>
 
 </main>
@@ -1135,7 +701,6 @@ scores  <span class="op">=</span> [<span class="fn">player_level</span>(p) <span
 <script>
   const links = document.querySelectorAll('nav a');
   const sections = document.querySelectorAll('section, .hero');
-
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1146,7 +711,6 @@ scores  <span class="op">=</span> [<span class="fn">player_level</span>(p) <span
       }
     });
   }, { rootMargin: '-20% 0px -60% 0px' });
-
   sections.forEach(s => observer.observe(s));
 </script>
 </body>
