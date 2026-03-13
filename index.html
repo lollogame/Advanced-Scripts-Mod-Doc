@@ -733,9 +733,9 @@ tag <span class="op">=</span> <span class="fn">player_nbt_tag</span>(<span class
     <pre><code><span class="k">while</span> <span class="k">True</span>:
     <span class="k">for</span> p <span class="k">in</span> <span class="fn">player_list</span>():
         <span class="k">if</span> <span class="fn">score_test</span>(p, <span class="s">"kills"</span>, <span class="n">5</span>, <span class="n">5</span>):
-            /title {p} actionbar [{"text":"&#9889; 5 Kill Streak!","color":"gold","bold":true}]
+            /title {p} actionbar [{"text":"5 Kill Streak!","color":"gold","bold":true}]
         <span class="k">if</span> <span class="fn">score_test</span>(p, <span class="s">"kills"</span>, <span class="n">25</span>, <span class="n">25</span>):
-            /title {p} title [{"text":"&#128081; LEGGENDA","color":"red","bold":true}]
+            /title {p} title [{"text":"CHAMPION","color":"red","bold":true}]
             /say {p} ha raggiunto 25 kill!
     <span class="fn">wait</span>(<span class="n">60</span>)</code></pre>
 
@@ -748,12 +748,12 @@ top   <span class="op">=</span> <span class="op">-</span><span class="n">1</span
         top  <span class="op">=</span> scores[p]
         best <span class="op">=</span> p
 <span class="k">if</span> best <span class="op">!=</span> <span class="k">None</span>:
-    /say &#127942; Leader: {best} con {top} kill!</code></pre>
+    /say Leader: {best} with {top} kill!</code></pre>
 
     <h3>Example — Reset all scores</h3>
     <pre><code><span class="k">for</span> p <span class="k">in</span> <span class="fn">player_list</span>():
     <span class="fn">score_set</span>(p, <span class="s">"kills"</span>, <span class="n">0</span>)
-/say Tutti i punteggi resettati!</code></pre>
+/say All scores resetted!</code></pre>
 
     <h3>Example — Switch sidebar objective</h3>
     <pre><code><span class="c"># Hide current sidebar, show deaths instead</span>
@@ -849,4 +849,5 @@ idx <span class="op">=</span> <span class="n">0</span>
 </script>
 </body>
 </html>
+
 
